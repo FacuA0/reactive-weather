@@ -1,10 +1,11 @@
-function City(props) {
+function City({ city }) {
     return (
         <>
-            <p><b>País:</b> Argentina</p>
-            <p><b>Ciudad:</b> Buenos Aires</p>
-            <p><b>Latitud:</b> 0</p>
-            <p><b>Longitud:</b> 0</p>
+            <p><b>País:</b> {city?.country || "Argentina"}</p>
+            <p><b>Estado/provincia:</b> {city?.admin1 || city?.country && "Desconocido" || "Buenos Aires"}</p>
+            <p><b>Ciudad:</b> {city?.name || "Buenos Aires"}</p>
+            <p><b>Latitud:</b> {city?.latitude || "Desconocido"}</p>
+            <p><b>Longitud:</b> {city?.longitude || "Desconocido"}</p>
         </>
     );
 }
