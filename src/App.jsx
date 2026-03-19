@@ -4,6 +4,7 @@ import Now from './components/Now';
 import Day from './components/Day';
 import Hour from './components/Hour';
 import './App.css';
+import { useState } from 'react';
 
 function App() {
     return (
