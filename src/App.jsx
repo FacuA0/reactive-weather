@@ -8,15 +8,17 @@ import './App.css';
 import { useState } from 'react';
 
 function App() {
+    const [city, setCity] = useState(null);
+
     return (
         <>
             <h1>Clima reactivo</h1>
             <p>Busca la ciudad que quieras, y obtén datos del clima en segundos.</p>
-            <CitySearch />
+            <CitySearch setCity={setCity} />
 
             <div id="datos-ciudad">
                 <h2>Ciudad actual</h2>
-                <City />
+                <City city={city} />
             </div>
 
             <div id="datos-actuales">
