@@ -1,5 +1,6 @@
 //import { useState } from 'react'
 import CitySearch from './components/CitySearch';
+import City from './components/City';
 import Now from './components/Now';
 import Day from './components/Day';
 import Hour from './components/Hour';
@@ -12,6 +13,11 @@ function App() {
             <h1>Clima reactivo</h1>
             <p>Busca la ciudad que quieras, y obtén datos del clima en segundos.</p>
             <CitySearch />
+
+            <div id="datos-ciudad">
+                <h2>Ciudad actual</h2>
+                <City />
+            </div>
 
             <div id="datos-actuales">
                 <h2>Datos del clima</h2>

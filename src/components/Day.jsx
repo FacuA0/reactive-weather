@@ -5,7 +5,7 @@ function Day(props) {
             <p><b>Cielo:</b> Soleado</p>
             <p><b>Temperatura máx:</b> 0°C</p>
             <p><b>Temperatura mín:</b> 0°C</p>
-            <p><b>Probabilidad:</b> 0°C</p>
+            <p><b>Probabilidad:</b> 0%</p>
         </li>
     );
 }
