@@ -31,7 +31,7 @@ function convertWeathertoHuman(code) {
 }
 
 function dateToHuman(date) {
-    return new Intl.DateTimeFormat("es-AR", {month: "long", day: "numeric"}).format(new Date(date));
+    return new Intl.DateTimeFormat("es-AR", {month: "long", day: "numeric", weekday: "long"}).format(new Date(date));
 }
 
 export {
