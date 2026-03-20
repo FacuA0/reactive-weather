@@ -6,6 +6,15 @@ import Day from './components/Day';
 import Hour from './components/Hour';
 import './App.css';
 
+const DEFAULT_CURRENT = {
+    wmo_code: 0,
+    temperature_2m: 0,
+    apparent_temperature: 0,
+    precipitation_probability: 0,
+    precipitation: 0,
+    relative_humidity: 0
+};
+
 const DEFAULT_HOURS = [
     {
         time: "00:00",
@@ -73,7 +82,7 @@ function App() {
     async function setNewCity(city) {
         setCity(city);
 
-        let res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${city.latitude}&longitude=${city.longitude}&daily=temperature_2m_max,temperature_2m_min,weather_code,rain_sum,precipitation_sum,precipitation_probability_max&hourly=temperature_2m,weather_code,cloud_cover,apparent_temperature,precipitation_probability,rain,precipitation&current=temperature_2m,relative_humidity_2m,precipitation,cloud_cover,rain,weather_code,apparent_temperature&timezone=auto`);
+        let res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${city.latitude}&longitude=${city.longitude}&daily=temperature_2m_max,temperature_2m_min,weather_code,rain_sum,precipitation_sum,precipitation_probability_max&hourly=temperature_2m,weather_code,apparent_temperature,precipitation_probability,rain,precipitation&current=temperature_2m,relative_humidity_2m,precipitation,rain,weather_code,apparent_temperature,precipitation_probability&timezone=auto`);
         let data = await res.json();
 
         setNow(data.current);
@@ -119,13 +128,6 @@ function App() {
         <Hour key={"hour-" + hour.time} hour={hour}/>
     ));
 
-    console.log(daily);
-    console.log(DEFAULT_DAYS);
-    console.log(dayList);
-    console.log(hourly);
-    console.log(DEFAULT_HOURS);
-    console.log(dayList);
-
     return (
         <>
             <h1>Clima reactivo</h1>
@@ -139,7 +141,7 @@ function App() {
 
             <div id="datos-actuales">
                 <h2>Datos del clima</h2>
-                <Now />
+                <Now now={now || DEFAULT_CURRENT} />
             </div>
 
             <div id="datos-hora">
