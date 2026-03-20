@@ -1,9 +1,10 @@
-function Hour(props) {
+function Hour({ hour }) {
     return (
         <li>
-            <p><b>{props.hour}</b></p>
-            <p><b>Temperatura:</b> 0°C</p>
-            <p><b>Probabilidad:</b> 0°C</p>
+            <p><b>{hour.time}</b></p>
+            <p><b>Cielo:</b> {hour.wmo_code || "-"}</p>
+            <p><b>Temperatura:</b> {hour.temperature_2m || "-"}°C</p>
+            <p><b>Probabilidad:</b> {hour.precipitation_probability || "-"}%</p>
         </li>
     );
 }
