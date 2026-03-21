@@ -1,8 +1,7 @@
 import { convertWeathertoHuman } from "../utils";
 
 function Hour({ hour }) {
-    console.log("Hour");
-    console.log(hour);
+    //console.log("Hour", hour);
 
     return (
         <li>

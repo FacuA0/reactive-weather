@@ -6,83 +6,16 @@ import Day from './components/Day';
 import Hour from './components/Hour';
 import './App.css';
 
-const DEFAULT_CURRENT = {
-    weather_code: 0,
-    temperature_2m: 0,
-    apparent_temperature: 0,
-    precipitation_probability: 0,
-    precipitation: 0,
-    relative_humidity: 0
-};
-
-const DEFAULT_HOURS = [
-    {
-        time: "T00:00",
-        weather_code: 0,
-        temperature_2m: 0,
-        precipitation_probability: 0,
-    },
-    {
-        time: "T01:00",
-        weather_code: 0,
-        temperature_2m: 0,
-        precipitation_probability: 0,
-    },
-    {
-        time: "T02:00",
-        weather_code: 0,
-        temperature_2m: 0,
-        precipitation_probability: 0,
-    },
-    {
-        time: "T03:00",
-        weather_code: 0,
-        temperature_2m: 0,
-        precipitation_probability: 0,
-    }
-];
-
-const DEFAULT_DAYS = [
-    {
-        time: "2026-03-19",
-        weather_code: 0,
-        temperature_2m_max: 0,
-        temperature_2m_min: 0,
-        precipitation_probability_mean: 0,
-    },
-    {
-        time: "2026-03-20",
-        weather_code: 0,
-        temperature_2m_max: 0,
-        temperature_2m_min: 0,
-        precipitation_probability_mean: 0,
-    },
-    {
-        time: "2026-03-21",
-        weather_code: 0,
-        temperature_2m_max: 0,
-        temperature_2m_min: 0,
-        precipitation_probability_mean: 0,
-    },
-    {
-        time: "2026-03-22",
-        weather_code: 0,
-        temperature_2m_max: 0,
-        temperature_2m_min: 0,
-        precipitation_probability_mean: 0,
-    }
-];
-
 function App() {
-    const [city, setCity] = useState(null);
-    const [now, setNow] = useState();
-    const [hourly, setHourly] = useState();
-    const [daily, setDaily] = useState();
+    const [city, setCity] = useState({});
+    const [now, setNow] = useState({});
+    const [hourly, setHourly] = useState([]);
+    const [daily, setDaily] = useState([]);
 
     async function setNewCity(city) {
         setCity(city);
 
-        let res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${city.latitude}&longitude=${city.longitude}&daily=temperature_2m_max,temperature_2m_min,weather_code,rain_sum,precipitation_sum,precipitation_probability_mean&hourly=temperature_2m,weather_code,apparent_temperature,precipitation_probability,rain,precipitation&current=temperature_2m,relative_humidity_2m,precipitation,rain,weather_code,apparent_temperature,precipitation_probability&timezone=auto`);
+        let res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${city.latitude}&longitude=${city.longitude}&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_mean&hourly=temperature_2m,weather_code,precipitation_probability&current=temperature_2m,relative_humidity_2m,precipitation,rain,weather_code,apparent_temperature,precipitation_probability&timezone=auto`);
         let data = await res.json();
 
         setNow(data.current);
@@ -97,6 +30,7 @@ function App() {
 
             newDaily.push(obj);
         }
+
         setDaily(newDaily);
 
         let newHourly = [];
@@ -120,11 +54,11 @@ function App() {
         setHourly(newHourly);
     }
 
-    const dayList = (daily || DEFAULT_DAYS).map(day => (
+    const dayList = daily.map(day => (
         <Day key={"day-" + day.time} day={day}/>
     ));
 
-    const hourList = (hourly || DEFAULT_HOURS).map(hour => (
+    const hourList = hourly.map(hour => (
         <Hour key={"hour-" + hour.time} hour={hour}/>
     ));
 
@@ -141,7 +75,7 @@ function App() {
 
             <div id="datos-actuales">
                 <h2>Datos del clima</h2>
-                <Now now={now || DEFAULT_CURRENT} />
+                <Now now={now} />
             </div>
 
             <div id="datos-hora">
