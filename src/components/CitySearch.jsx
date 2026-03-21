@@ -44,7 +44,7 @@ function CitySearch(props) {
                     name: "Error (vea consola)"
                 }];
             }
-            else return newCities.results;
+            else return newCities.results ?? [];
         }
         catch (err) {
             console.error(err);
@@ -57,12 +57,8 @@ function CitySearch(props) {
 
     let dupNames = {};
     for (let {name, country} of cities) {
-        if (!((name + ", " + country) in dupNames)) {
-            dupNames[name + ", " + country] = false;
-        }
-        else {
-            dupNames[name + ", " + country] = true;
-        }
+        let cityName = `${name}, ${country}`;
+        dupNames[cityName] = cityName in dupNames;
     }
 
     const cityList = cities.map(city => {

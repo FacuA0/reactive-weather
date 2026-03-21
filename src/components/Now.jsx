@@ -1,8 +1,7 @@
 import { convertWeathertoHuman } from "../utils";
 
 function Now({ now }) {
-    console.log("Now");
-    console.log(now);
+    //console.log("Now", now);
 
     return (
         <>
