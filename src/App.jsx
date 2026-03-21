@@ -7,8 +7,8 @@ import Hour from './components/Hour';
 import './App.css';
 
 function App() {
-    const [city, setCity] = useState({});
-    const [now, setNow] = useState({});
+    const [city, setCity] = useState(null);
+    const [now, setNow] = useState(null);
     const [hourly, setHourly] = useState([]);
     const [daily, setDaily] = useState([]);
 
@@ -62,11 +62,18 @@ function App() {
         <Hour key={"hour-" + hour.time} hour={hour}/>
     ));
 
-    return (
+    const searchPage = (
         <>
             <h1>Clima reactivo</h1>
             <p>Busca la ciudad que quieras, y obtén datos del clima en segundos.</p>
             <CitySearch setCity={setNewCity} />
+        </>
+    );
+
+    const weatherPage = (
+        <>
+            <h1>Clima reactivo</h1>
+            <button onClick={() => setCity(null)}>Volver</button>
 
             <div id="datos-ciudad">
                 <h2>Ciudad actual</h2>
@@ -92,7 +99,9 @@ function App() {
                 </ul>
             </div>
         </>
-    )
+    );
+
+    return !city ? searchPage : weatherPage;
 }
 
 export default App

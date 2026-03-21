@@ -1,4 +1,6 @@
 function City({ city }) {
+    city = city || {};
+
     return (
         <>
             <p><b>País:</b> {city.country || "Desconocido"}</p>
