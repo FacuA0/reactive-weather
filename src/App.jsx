@@ -13,6 +13,13 @@ function App() {
     const [daily, setDaily] = useState([]);
 
     async function setNewCity(city) {
+        if (!city) {
+                console.log("Not setting city", city);
+            alert("No se encontró esta ciudad.");
+            return;
+        }
+        console.log("Yes setting city", city);
+
         setCity(city);
 
         let res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${city.latitude}&longitude=${city.longitude}&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_mean&hourly=temperature_2m,weather_code,precipitation_probability&current=temperature_2m,relative_humidity_2m,precipitation,rain,weather_code,apparent_temperature,precipitation_probability&timezone=auto`);
