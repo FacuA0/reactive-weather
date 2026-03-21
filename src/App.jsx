@@ -63,16 +63,16 @@ function App() {
     ));
 
     const searchPage = (
-        <>
-            <h1>Clima reactivo</h1>
+        <main className='bg-block search'>
+            <img id='logo' src='src/assets/icons/logo.svg'/>
             <p>Busca la ciudad que quieras, y obtén datos del clima en segundos.</p>
             <CitySearch setCity={setNewCity} />
-        </>
+        </main>
     );
 
     const weatherPage = (
-        <>
-            <h1>Clima reactivo</h1>
+        <div className='bg-block weather'>
+            <img id='logo' src='src/assets/icons/logo.svg'/>
             <button onClick={() => setCity(null)}>Volver</button>
 
             <div id="datos-ciudad">
@@ -98,7 +98,7 @@ function App() {
                     {dayList}
                 </ul>
             </div>
-        </>
+        </div>
     );
 
     return !city ? searchPage : weatherPage;
