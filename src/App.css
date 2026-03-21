@@ -3,6 +3,7 @@ body {
     min-height: 100vh;
     box-sizing: border-box;
     background-color: #5AF;
+    background-image: linear-gradient(-45deg, #24F, #5EF);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     
     display: flex;
@@ -18,6 +19,35 @@ main.search, div.weather {
 
 main.search > #logo {
     margin: 10% 0 8%;
+}
+
+#search-bar {
+    margin-top: 8px;
+    padding: 8px;
+    border-radius: 18px;
+    background-color: #FFFC;
+    box-shadow: 1px 1px 4px 1px #0004;
+    display: flex;
+    align-items: center;
+}
+
+#search-bar > * {
+    border: 0;
+    background-color: #FFF0;
+}
+
+#search-bar > button {
+    padding: 4px;
+}
+
+#search-icon {
+    margin-bottom: -2px;
+}
+
+#input-city {
+    font-size: 0.9em;
+    padding: 8px 12px;
+    border-radius: 10px;
 }
 
 p {

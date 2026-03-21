@@ -12,7 +12,7 @@ function convertWeatherToHuman(code) {
     if (code == 57) return "Llovizna congelada fuerte";
     if (code == 61) return "Lluvia ligera";
     if (code == 63) return "Lluvia";
-    if (code == 65) return "LLuvia fuerte";
+    if (code == 65) return "Lluvia fuerte";
     if (code == 66) return "Lluvia congelada";
     if (code == 67) return "Lluvia congelada fuerte";
     if (code == 71) return "Nevada ligera";
@@ -27,7 +27,7 @@ function convertWeatherToHuman(code) {
     if (code == 95) return "Tormenta ligera o moderada";
     if (code == 96) return "Tormenta con granizo";
     if (code == 99) return "Tormenta con granizo fuerte";
-    return code;
+    return `Otro (${code})`;
 }
 
 function dateToHuman(date) {
@@ -38,7 +38,25 @@ function dateToHuman(date) {
     }).format(new Date(date));
 }
 
+function deduplicateCityNames(cities) {
+    let dupNames = {};
+    for (let {name, country} of cities) {
+        let cityName = `${name}, ${country}`;
+        dupNames[cityName] = cityName in dupNames;
+    }
+
+    for (let city of cities) {
+        let name = `${city.name}, ${city.country}`;
+        if (dupNames[name]) {
+            name = `${city.name}, ${city.admin1 ?? city.admin2 ?? city.admin3 ?? city.admin4}, ${city.country}`;
+        }
+
+        city.cityName = name;
+    }
+}
+
 export {
     convertWeatherToHuman,
-    dateToHuman
+    dateToHuman,
+    deduplicateCityNames
 };
