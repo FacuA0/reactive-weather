@@ -1,4 +1,4 @@
-import { convertWeathertoHuman } from "../utils";
+import { convertWeatherToHuman } from "../utils";
 
 function Hour({ hour }) {
     //console.log("Hour", hour);
@@ -6,7 +6,7 @@ function Hour({ hour }) {
     return (
         <li>
             <p><b>{hour.time.substring(hour.time.indexOf("T") + 1)}</b></p>
-            <p><b>Cielo:</b> {convertWeathertoHuman(hour.weather_code) ?? "-"}</p>
+            <p><b>Cielo:</b> {convertWeatherToHuman(hour.weather_code) ?? "-"}</p>
             <p><b>Temperatura:</b> {hour.temperature_2m ?? "-"}°C</p>
             <p><b>Probabilidad:</b> {hour.precipitation_probability ?? "-"}%</p>
         </li>

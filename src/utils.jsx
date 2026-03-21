@@ -1,4 +1,4 @@
-function convertWeathertoHuman(code) {
+function convertWeatherToHuman(code) {
     if (code == 0) return "Despejado";
     if (code == 1) return "Parcialmente despejado";
     if (code == 2) return "Parcialmente nublado";
@@ -39,6 +39,6 @@ function dateToHuman(date) {
 }
 
 export {
-    convertWeathertoHuman,
+    convertWeatherToHuman,
     dateToHuman
 };
