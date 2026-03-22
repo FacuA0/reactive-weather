@@ -29,9 +29,12 @@ function CitySearch(props) {
         let newSearch = e.target.value;
         setSearch(newSearch);
         
-        if (newSearch.length > 1) {
-            if (lookingUp != 0) clearTimeout(lookingUp);
+        if (lookingUp != 0) {
+            clearTimeout(lookingUp);
+            setLookingUp(0);
+        }
 
+        if (newSearch.length > 1) {
             setLookingUp(setTimeout(async () => {
                 setLookingUp(0);
                 setCities(await fetchCities(newSearch));
@@ -79,7 +82,7 @@ function CitySearch(props) {
     ));
    
     const cityList2 = cities.map(city => (
-        <button onClick={() => goToCity(city.cityName)}>
+        <button key={"city-" + city.id} onClick={() => goToCity(city.cityName)}>
             <CircleFlag countryCode={city.country_code.toLowerCase()} height="24" width="24"/>
             {city.cityName}
         </button>
@@ -91,30 +94,23 @@ function CitySearch(props) {
                 <button type="submit">
                     <img 
                         id="search-icon"
-                        src="src/assets/icons/default.svg"
+                        src="src/assets/icons/search.svg"
                         alt="Buscar"
-                        width="24"/>
+                        width="20"/>
                 </button>
                 <input 
                     id="input-city"
                     type="text"
-                    list="city-names"
                     size="45"
                     placeholder="Busca tu ciudad..."
                     value={search}
                     onChange={handleChange}/>
-                {/*<input type="submit" value="Buscar"/>*/}
             </div>
-            
             <div
                 id="search-suggestions"
                 className={cityList2.length == 0 ? "hidden" : ""}>
                 {cityList2}
             </div>
-
-            <datalist id="city-names">
-                {cityList}
-            </datalist>
         </form>
     );
 }
