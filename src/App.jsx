@@ -14,11 +14,9 @@ function App() {
 
     async function setNewCity(city) {
         if (!city) {
-                console.log("Not setting city", city);
             alert("No se encontró esta ciudad.");
             return;
         }
-        console.log("Yes setting city", city);
 
         setCity(city);
 

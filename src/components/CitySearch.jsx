@@ -8,27 +8,26 @@ function CitySearch(props) {
     const [cities, setCities] = useState([]);
     const [lookingUp, setLookingUp] = useState(0);
 
+    async function goToCity(cityName) {
+        let city = allCities[cityName];
+        if (!city) {
+            city = (await fetchCities(cityName))[0];
+        }
+
+        props.setCity(city);
+    }
+
     async function handleSubmit(e) {
         e.preventDefault();
 
-        console.log("Search", search);
-
         if (search != "") {
-            let city = allCities[search];
-            console.log("City 1", city);
-            if (!city) {
-                city = (await fetchCities(search))[0];
-                console.log("City 2", city);
-            }
-    
-            props.setCity(city);
+            await goToCity(search);
         }
     }
 
     async function handleChange(e) {
         let newSearch = e.target.value;
         setSearch(newSearch);
-        console.log("New search", search);
         
         if (newSearch.length > 1) {
             if (lookingUp != 0) clearTimeout(lookingUp);
@@ -80,12 +79,11 @@ function CitySearch(props) {
     ));
    
     const cityList2 = cities.map(city => (
-        <button onClick={e => alert(e.target.innerHTML)}>
+        <button onClick={() => goToCity(city.cityName)}>
             <CircleFlag countryCode={city.country_code.toLowerCase()} height="24" width="24"/>
             {city.cityName}
         </button>
     ));
-
 
     return (
         <form id="city-search" onSubmit={handleSubmit}>
