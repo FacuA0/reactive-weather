@@ -61,6 +61,8 @@ main.search > #logo {
     display: flex;
     flex-direction: column;
     box-shadow: 1px 1px 4px 1px #0004;
+    max-height: 260px;
+    overflow-y: scroll;
 }
 
 #search-suggestions.hidden {
