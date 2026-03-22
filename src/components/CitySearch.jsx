@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { deduplicateCityNames } from "../utils";
+import { CircleFlag } from "react-circle-flags";
 
 function CitySearch(props) {
     const [search, setSearch] = useState("");
@@ -79,7 +80,7 @@ function CitySearch(props) {
     ));
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form id="city-search" onSubmit={handleSubmit}>
             <div id="search-bar">
                 <button type="submit">
                     <img 
@@ -97,6 +98,20 @@ function CitySearch(props) {
                     value={search}
                     onChange={handleChange}/>
                 {/*<input type="submit" value="Buscar"/>*/}
+            </div>
+            <div id="search-suggestions">
+                <button onClick={e => alert(e.target.innerHTML)}>
+                    <CircleFlag countryCode="ar" height="24" width="24"/>
+                    Argentina
+                </button>
+                <button onClick={e => alert(e.target.innerHTML)}>
+                    <CircleFlag countryCode="co" height="24" width="24"/>
+                    Colombia
+                </button>
+                <button onClick={e => alert(e.target.innerHTML)}>
+                    <CircleFlag countryCode="ec" height="24" width="24"/>
+                    Ecuador
+                </button>
             </div>
 
             <datalist id="city-names">
