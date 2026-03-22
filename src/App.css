@@ -15,6 +15,7 @@ main.search, div.weather {
     flex-direction: column;
     align-items: center;
     height: 100%;
+    max-height: 100vh;
 }
 
 main.search > #logo {
@@ -24,6 +25,7 @@ main.search > #logo {
 #city-search {
     position: relative;
     font-size: 0.9em;
+    flex-shrink: 1;
 }
 
 #search-bar {
@@ -42,7 +44,7 @@ main.search > #logo {
 }
 
 #search-bar > button {
-    padding: 4px;
+    padding: 6px;
 }
 
 #search-icon {
@@ -61,7 +63,6 @@ main.search > #logo {
     display: flex;
     flex-direction: column;
     box-shadow: 1px 1px 4px 1px #0004;
-    max-height: 260px;
     overflow-y: scroll;
 }
 
@@ -86,7 +87,7 @@ main.search > #logo {
 }
 
 #search-suggestions img {
-    margin: 6px 10px 6px 8px;
+    margin: 6px 12px 6px 8px;
 }
 
 p {
