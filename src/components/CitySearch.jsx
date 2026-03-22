@@ -78,6 +78,14 @@ function CitySearch(props) {
     const cityList = cities.map(city => (
         <option key={"city-opt-" + city.id}>{city.cityName}</option>
     ));
+   
+    const cityList2 = cities.map(city => (
+        <button onClick={e => alert(e.target.innerHTML)}>
+            <CircleFlag countryCode={city.country_code.toLowerCase()} height="24" width="24"/>
+            {city.cityName}
+        </button>
+    ));
+
 
     return (
         <form id="city-search" onSubmit={handleSubmit}>
@@ -99,19 +107,11 @@ function CitySearch(props) {
                     onChange={handleChange}/>
                 {/*<input type="submit" value="Buscar"/>*/}
             </div>
-            <div id="search-suggestions">
-                <button onClick={e => alert(e.target.innerHTML)}>
-                    <CircleFlag countryCode="ar" height="24" width="24"/>
-                    Argentina
-                </button>
-                <button onClick={e => alert(e.target.innerHTML)}>
-                    <CircleFlag countryCode="co" height="24" width="24"/>
-                    Colombia
-                </button>
-                <button onClick={e => alert(e.target.innerHTML)}>
-                    <CircleFlag countryCode="ec" height="24" width="24"/>
-                    Ecuador
-                </button>
+            
+            <div
+                id="search-suggestions"
+                className={cityList2.length == 0 ? "hidden" : ""}>
+                {cityList2}
             </div>
 
             <datalist id="city-names">
