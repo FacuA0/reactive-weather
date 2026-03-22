@@ -45,10 +45,29 @@ main.search > #logo {
 
 #search-bar > button {
     padding: 6px;
+    border-radius: 6px;
+    transition: background-color 0.12s ease-in-out;
+}
+
+#search-bar > button:hover {
+    background-color: #FFF7;
+}
+
+#search-bar > button:active {
+    background-color: #FFFD;
 }
 
 #search-icon {
     margin-bottom: -2px;
+    transition: transform 0.12s ease-in-out;
+}
+
+button:hover > #search-icon  {
+    transform: scale(1.06);
+}
+
+button:active > #search-icon  {
+    transform: scale(1.16);
 }
 
 #input-city {
@@ -76,6 +95,7 @@ main.search > #logo {
     display: flex;
     align-items: center;
     border-radius: 18px;
+    transition: background-color 0.1s cubic-bezier(0, 0.6, 0.5, 0.9);
 }
 
 #search-suggestions button:hover {
