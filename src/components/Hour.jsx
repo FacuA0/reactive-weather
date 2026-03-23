@@ -6,7 +6,7 @@ function Hour({ hour }) {
     return (
         <div className="data-item">
             <p><b>{hour.time.substring(hour.time.indexOf("T") + 1)}</b></p>
-            <img src="src/assets/icons/default.svg" width={48} alt="Probabildad de lluvia"/>
+            <img src="src/assets/icons/default.svg" width={56} alt="Probabildad de lluvia"/>
             <p className="hour-temp">{hour.temperature_2m ?? "-"}°C</p>
             <div className="data-rain">
                 <img src="src/assets/icons/default.svg" width={16} alt="Probabildad de lluvia"/>

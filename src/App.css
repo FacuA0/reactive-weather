@@ -180,12 +180,12 @@ h2 {
 .data-items {
     display: flex;
     overflow-x: scroll;
-    gap: 8px;
+    gap: 6px;
 }
 
 .data-item {
     background-color: #FFF2;
-    padding: 12px;
+    padding: 12px 8px;
     border-radius: 12px;
     display: flex;
     flex-direction: column;
@@ -193,21 +193,20 @@ h2 {
     gap: 8px;
 }
 
+#data-hours .data-item > *:nth-child(1) {
+    margin-top: 0;
+}
+
 .hour-temp {
     font-size: 1.2em;
 }
 
 .data-rain {
-    display: inline-block;
-}
-
-.data-rain > * {
-    display: inline;
-    vertical-align: middle;
+    display: flex;
 }
 
 .data-rain > img {
-    margin-right: 6px;
+    margin-right: 4px;
 }
 
 p {
