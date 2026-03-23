@@ -193,12 +193,17 @@ h2 {
     gap: 8px;
 }
 
-#data-hours .data-item > *:nth-child(1) {
+.data-item > *:nth-child(1) {
     margin-top: 0;
 }
 
 .hour-temp {
     font-size: 1.2em;
+}
+
+.day-icons {
+    display: flex;
+    gap: 8px;
 }
 
 .data-rain {
