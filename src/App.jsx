@@ -71,37 +71,39 @@ function App() {
     ));
 
     const searchPage = (
-        <main className='search'>
-            <img id='logo' src='src/assets/icons/logo.svg'/>
+        <main className="search">
+            <img id="logo" src="src/assets/icons/logo.svg"/>
             <p>Busca la ciudad que quieras, y obtén datos del clima en segundos.</p>
             <CitySearch setCity={setNewCity} />
         </main>
     );
 
     const weatherPage = (
-        <div className='weather'>
+        <div className="weather">
             <header>
                 <button onClick={() => setCity(null)}>Volver</button>
-                <img id='logo' src='src/assets/icons/logo.svg' height="128"/>
+                <img id="logo" src="src/assets/icons/logo.svg" height="128"/>
                 <div className="filler"></div>
 
                 <City city={city} now={now} />
             </header>
 
-            <main>                
-                <div id="datos-actuales">
+            <img id="sky-icon" src="src/assets/icons/default.svg"/>
+
+            <main>
+                <div id="data-current">
                     <h2>Datos del clima</h2>
                     <Now now={now} />
                 </div>
 
-                <div id="datos-hora">
+                <div id="data-hours">
                     <h2>Datos por hora</h2>
                     <ul>
                         {hourList}
                     </ul>
                 </div>
 
-                <div id="datos-dia">
+                <div id="data-days">
                     <h2>Datos por día</h2>
                     <ul>
                         {dayList}
