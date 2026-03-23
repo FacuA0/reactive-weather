@@ -9,9 +9,9 @@ function Now({ now }) {
         <>
             <h2>{convertWeatherToHuman(now.weather_code) ?? "-"}</h2>
             <div className="current-column">
-                <p><b>Temperatura:</b> {now.temperature_2m ?? "-"}°C</p>
+                <p id="current-temp">{now.temperature_2m ?? "-"}°C</p>
                 <p><b>Sensación térmica:</b> {now.apparent_temperature ?? "-"}°C</p>
-                <p><b>Máx/mín: </b> {now.apparent_temperature ?? "-"}°C</p>
+                <p><b>Máx:</b> {now.temperatureMax ?? "-"}°C / <b>Mín:</b> {now.temperatureMin ?? "-"}°C</p>
             </div>
             <div className="current-column">
                 <p><b>Probabilidad de lluvia:</b> {now.precipitation_probability ?? "-"}%</p>

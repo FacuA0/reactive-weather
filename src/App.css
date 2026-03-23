@@ -167,6 +167,11 @@ h2 {
     margin-top: 0;
 }
 
+#current-temp {
+    font-size: 4em;
+    margin-top: 8px;
+}
+
 .current-column {
     display: inline-block;
     width: 50%;
