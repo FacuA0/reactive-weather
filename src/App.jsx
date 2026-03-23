@@ -23,6 +23,9 @@ function App() {
         let res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${city.latitude}&longitude=${city.longitude}&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_mean&hourly=temperature_2m,weather_code,precipitation_probability&current=temperature_2m,relative_humidity_2m,precipitation,rain,weather_code,apparent_temperature,precipitation_probability&timezone=auto`);
         let data = await res.json();
 
+        data.current.timezone = data.timezone_abbreviation;
+        data.current.utcOffset = data.utc_offset_seconds;
+
         setNow(data.current);
 
         let newDaily = [];
@@ -68,7 +71,7 @@ function App() {
     ));
 
     const searchPage = (
-        <main className='bg-block search'>
+        <main className='search'>
             <img id='logo' src='src/assets/icons/logo.svg'/>
             <p>Busca la ciudad que quieras, y obtén datos del clima en segundos.</p>
             <CitySearch setCity={setNewCity} />
@@ -76,33 +79,34 @@ function App() {
     );
 
     const weatherPage = (
-        <div className='bg-block weather'>
-            <img id='logo' src='src/assets/icons/logo.svg'/>
-            <button onClick={() => setCity(null)}>Volver</button>
+        <div className='weather'>
+            <header>
+                <img id='logo' src='src/assets/icons/logo.svg' height="128"/>
+                <button onClick={() => setCity(null)}>Volver</button>
 
-            <div id="datos-ciudad">
-                <h2>Ciudad actual</h2>
-                <City city={city} />
-            </div>
+                <City city={city} now={now} />
+            </header>
 
-            <div id="datos-actuales">
-                <h2>Datos del clima</h2>
-                <Now now={now} />
-            </div>
+            <main>                
+                <div id="datos-actuales">
+                    <h2>Datos del clima</h2>
+                    <Now now={now} />
+                </div>
 
-            <div id="datos-hora">
-                <h2>Datos por hora</h2>
-                <ul>
-                    {hourList}
-                </ul>
-            </div>
+                <div id="datos-hora">
+                    <h2>Datos por hora</h2>
+                    <ul>
+                        {hourList}
+                    </ul>
+                </div>
 
-            <div id="datos-dia">
-                <h2>Datos por día</h2>
-                <ul>
-                    {dayList}
-                </ul>
-            </div>
+                <div id="datos-dia">
+                    <h2>Datos por día</h2>
+                    <ul>
+                        {dayList}
+                    </ul>
+                </div>
+            </main>
         </div>
     );
 

@@ -1,13 +1,27 @@
-function City({ city }) {
+import { CircleFlag } from "react-circle-flags";
+
+function City({ city, now }) {
     city = city || {};
+
+    let countryCode = city.country_code.toLowerCase();
+    let hourString = "Cargando...";
+
+    if (now) {
+        let hourNow = new Date(Date.now() + now.utcOffset * 1000);
+        let hours = hourNow.getUTCHours() + "";
+        let mins = hourNow.getUTCMinutes() + "";
+        hours = hours.length == 1 ? "0" + hours : hours;
+        mins = mins.length == 1 ? "0" + mins : mins;
+        hourString = `${hours}:${mins} ${now.timezone}`;
+    }
 
     return (
         <>
-            <p><b>País:</b> {city.country || "Desconocido"}</p>
-            <p><b>Estado/provincia:</b> {city.admin1 || "Desconocido"}</p>
-            <p><b>Ciudad:</b> {city.name || "Desconocido"}</p>
-            <p><b>Latitud:</b> {city.latitude || "Desconocido"}</p>
-            <p><b>Longitud:</b> {city.longitude || "Desconocido"}</p>
+            <CircleFlag countryCode={countryCode} width="48" height="48"/>
+            <div id="datos-ciudad">
+                <p>{city.cityName || "Desconocido"}</p>
+                <p>{hourString}</p>
+            </div>
         </>
     );
 }
