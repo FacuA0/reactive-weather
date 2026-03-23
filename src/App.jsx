@@ -92,7 +92,6 @@ function App() {
 
             <main>
                 <div id="data-current">
-                    <h2>Datos del clima</h2>
                     <Now now={now} />
                 </div>
 
