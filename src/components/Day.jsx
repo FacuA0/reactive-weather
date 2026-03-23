@@ -1,7 +1,7 @@
 import { convertWeatherToHuman, dateToHuman } from "../utils";
 
 function Day({ day }) {
-    //console.log("Day", day);
+    console.log("Day", day);
 
     return (
         <li>

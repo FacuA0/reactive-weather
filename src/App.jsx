@@ -39,6 +39,9 @@ function App() {
             newDaily.push(obj);
         }
 
+        data.current.temperatureMax = newDaily[0].temperature_2m_max;
+        data.current.temperatureMin = newDaily[0].temperature_2m_min;
+
         setDaily(newDaily);
 
         let newHourly = [];
@@ -82,7 +85,7 @@ function App() {
         <div className="weather">
             <header>
                 <button onClick={() => setCity(null)}>Volver</button>
-                <img id="logo" src="src/assets/icons/logo.svg" height="128"/>
+                <img id="logo" src="src/assets/icons/logo.svg" height="96"/>
                 <div className="filler"></div>
 
                 <City city={city} now={now} />
