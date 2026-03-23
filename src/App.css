@@ -177,6 +177,11 @@ h2 {
     width: 50%;
 }
 
+#data-hours > div, #data-days > div {
+    display: flex;
+    overflow-x: scroll;
+}
+
 p {
     margin: 0.5em 0;
 }
