@@ -81,8 +81,9 @@ function App() {
     const weatherPage = (
         <div className='weather'>
             <header>
-                <img id='logo' src='src/assets/icons/logo.svg' height="128"/>
                 <button onClick={() => setCity(null)}>Volver</button>
+                <img id='logo' src='src/assets/icons/logo.svg' height="128"/>
+                <div className="filler"></div>
 
                 <City city={city} now={now} />
             </header>

@@ -119,14 +119,25 @@ button:active > #search-icon  {
     margin: 6px 12px 6px 8px;
 }
 
-div.weather > header {
-    background-color: #0FF;
+.weather > header {
+    background-color: #FFF4;
     display: flex;
     align-items: center;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
+}
+
+header > .filler {
+    flex-grow: 1;
+}
+header > #datos-ciudad {
+    margin: 0 16px;
+}
+
+.weather > main {
+    margin-top: 96px;
 }
 
 p {
