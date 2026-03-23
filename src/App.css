@@ -177,9 +177,37 @@ h2 {
     width: 50%;
 }
 
-#data-hours > div, #data-days > div {
+.data-items {
     display: flex;
     overflow-x: scroll;
+    gap: 8px;
+}
+
+.data-item {
+    background-color: #FFF2;
+    padding: 12px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.hour-temp {
+    font-size: 1.2em;
+}
+
+.data-rain {
+    display: inline-block;
+}
+
+.data-rain > * {
+    display: inline;
+    vertical-align: middle;
+}
+
+.data-rain > img {
+    margin-right: 6px;
 }
 
 p {
