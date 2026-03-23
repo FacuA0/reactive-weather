@@ -4,11 +4,14 @@ function Hour({ hour }) {
     //console.log("Hour", hour);
 
     return (
-        <div>
+        <div className="data-item">
             <p><b>{hour.time.substring(hour.time.indexOf("T") + 1)}</b></p>
-            <p><b>Cielo:</b> {convertWeatherToHuman(hour.weather_code) ?? "-"}</p>
-            <p><b>Temperatura:</b> {hour.temperature_2m ?? "-"}°C</p>
-            <p><b>Probabilidad:</b> {hour.precipitation_probability ?? "-"}%</p>
+            <img src="src/assets/icons/default.svg" width={48} alt="Probabildad de lluvia"/>
+            <p className="hour-temp">{hour.temperature_2m ?? "-"}°C</p>
+            <div className="data-rain">
+                <img src="src/assets/icons/default.svg" width={16} alt="Probabildad de lluvia"/>
+                <p>{hour.precipitation_probability ?? "-"}%</p>
+            </div>
         </div>
     );
 }

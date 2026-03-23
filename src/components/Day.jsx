@@ -4,7 +4,7 @@ function Day({ day }) {
     console.log("Day", day);
 
     return (
-        <div>
+        <div className="data-item">
             <p><b>{dateToHuman(day.time)}</b></p>
             <p><b>Cielo:</b> {convertWeatherToHuman(day.weather_code) ?? "-"}</p>
             <p><b>Temperatura máx:</b> {day.temperature_2m_max ?? "-"}°C</p>

@@ -100,14 +100,14 @@ function App() {
 
                 <div id="data-hours">
                     <h2>Datos por hora</h2>
-                    <div>
+                    <div className="data-items">
                         {hourList}
                     </div>
                 </div>
 
                 <div id="data-days">
                     <h2>Datos por día</h2>
-                    <div>
+                    <div className="data-items">
                         {dayList}
                     </div>
                 </div>
