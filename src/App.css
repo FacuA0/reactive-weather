@@ -123,7 +123,6 @@ div.weather {
     display: flex;
     align-items: start;
     padding-top: 96px;
-    background-color: #FFF1;
 }
 
 .weather > header {
@@ -145,13 +144,15 @@ header > #datos-ciudad {
 
 .weather > main {
     box-sizing: border-box;
-    padding-left: calc(32px + 180px);
-    width: 60vw;
-    max-width: 720px;
+    padding-left: calc(32px + 180px + 64px);
+    width: 960px;
+    max-width: calc(100vw - 32px * 2);
 }
 
 #sky-icon {
     position: fixed;
+    margin-top: 64px;
+    margin-left: 32px;
 }
 
 p {
