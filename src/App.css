@@ -156,7 +156,7 @@ header > #datos-ciudad {
 }
 
 #data-current, #data-hours, #data-days {
-    padding: 24px;
+    padding: 20px;
     background-color: #FFF2;
     margin-top: 24px;
     margin-bottom: 24px;
@@ -195,6 +195,7 @@ h2 {
 
 .data-item > *:nth-child(1) {
     margin-top: 0;
+    text-align: center;
 }
 
 .hour-temp {
@@ -203,7 +204,11 @@ h2 {
 
 .day-icons {
     display: flex;
-    gap: 8px;
+    gap: 14px;
+}
+
+.day-temp {
+    font-size: 1.15em;
 }
 
 .data-rain {
