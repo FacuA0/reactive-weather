@@ -31,11 +31,18 @@ function convertWeatherToHuman(code) {
 }
 
 function dateToHuman(date) {
-    return new Intl.DateTimeFormat(undefined, {
-        month: "long", 
-        day: "numeric", 
+    date = new Date(date);
+
+    let weekDay = new Intl.DateTimeFormat(undefined, {
         weekday: "long"
-    }).format(new Date(date));
+    }).format(date);
+
+    let day = new Intl.DateTimeFormat(undefined, {
+        month: "short", 
+        day: "numeric",
+    }).format(date);
+
+    return [weekDay, day];
 }
 
 function deduplicateCityNames(cities) {
