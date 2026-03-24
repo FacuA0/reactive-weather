@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { deduplicateCityNames } from "../utils";
 import { CircleFlag } from "react-circle-flags";
 

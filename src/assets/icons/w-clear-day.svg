@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="180"
+   height="180"
+   viewBox="0 0 47.624999 47.625"
+   version="1.1"
+   id="svg7461"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs7458">
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath17673">
+      <path
+         style="color:#000000;fill:#ffffff;stroke-width:1;stroke-linecap:round;-inkscape-stroke:none"
+         d="M 23.8125,0 C 10.72391,0 0,10.72391 0,23.8125 0,36.901091 10.72391,47.625 23.8125,47.625 36.901091,47.625 47.625,36.901091 47.625,23.8125 47.625,10.72391 36.901091,0 23.8125,0 Z m 0,10.583984 c 7.368939,0 13.228515,5.859578 13.228515,13.228516 0,7.368939 -5.859576,13.228515 -13.228515,13.228515 -7.368938,0 -13.228516,-5.859576 -13.228516,-13.228515 0,-7.368938 5.859578,-13.228516 13.228516,-13.228516 z"
+         id="path17675" />
+    </clipPath>
+  </defs>
+  <g
+     id="layer1">
+    <path
+       style="fill:#ffcf00;fill-opacity:1;stroke:none;stroke-width:1.05833;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+       id="path11121"
+       d="M 40.544117,40.321472 28.172734,34.104601 23.954086,47.291851 19.60219,34.147971 7.2943608,40.48973 13.511233,28.118348 0.32398191,23.8997 13.467862,19.547804 7.1261028,7.2399746 19.497485,13.456847 23.716133,0.26959577 28.068029,13.413476 40.375859,7.0717167 34.158987,19.443099 47.346238,23.661747 34.202357,28.013643 Z"
+       clip-path="url(#clipPath17673)" />
+    <circle
+       style="display:inline;fill:#ffe200;fill-opacity:1;stroke:#ffbf0b;stroke-width:1.05833;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+       id="path7732"
+       cy="23.812498"
+       cx="23.812498"
+       r="11.1125" />
+    <circle
+       style="display:none;opacity:1;fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:10.5833;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+       id="circle17667"
+       cx="23.812498"
+       cy="23.812498"
+       r="18.520834" />
+  </g>
+</svg>
