@@ -6,7 +6,7 @@ function CitySearch(props) {
     const [search, setSearch] = useState("");
     const [allCities, setAllCities] = useState({});
     const [cities, setCities] = useState([]);
-    const [lookingUp, setLookingUp] = useState(0);
+    const lookingUp = useRef(0);
 
     async function goToCity(cityName) {
         let city = allCities[cityName];
@@ -29,16 +29,16 @@ function CitySearch(props) {
         let newSearch = e.target.value;
         setSearch(newSearch);
         
-        if (lookingUp != 0) {
-            clearTimeout(lookingUp);
-            setLookingUp(0);
+        if (lookingUp.current != 0) {
+            clearTimeout(lookingUp.current);
+            lookingUp.current = 0;
         }
 
         if (newSearch.length > 1) {
-            setLookingUp(setTimeout(async () => {
-                setLookingUp(0);
+            lookingUp.current = setTimeout(async () => {
+                lookingUp.current = 0;
                 setCities(await fetchCities(newSearch));
-            }, 500));
+            }, 500);
         }
         else {
             setCities([]);
@@ -76,10 +76,6 @@ function CitySearch(props) {
             }];
         }
     }
-
-    const cityList = cities.map(city => (
-        <option key={"city-opt-" + city.id}>{city.cityName}</option>
-    ));
    
     const cityList2 = cities.map(city => (
         <button key={"city-" + city.id} onClick={() => goToCity(city.cityName)}>
