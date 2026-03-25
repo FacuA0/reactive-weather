@@ -30,13 +30,14 @@ function convertWeatherToHuman(code) {
     return `Otro (${code})`;
 }
 
-function convertWeatherToIcon(code) {
+function convertWeatherToIcon(code, isDay = 1) {
     let base = "src/assets/icons/";
+    let variant = isDay ? "day" : "night";
 
-    if (code == 0) return base + "w-clear-day.svg";
-    if (code == 1) return base + "w-mostly-clear-day.svg";
-    if (code == 2) return base + "w-partly-cloudy-day.svg";
-    if (code == 3) return base + "w-cloudy-day.svg";
+    if (code == 0) return base + `w-clear-${variant}.svg`;
+    if (code == 1) return base + `w-mostly-clear-${variant}.svg`;
+    if (code == 2) return base + `w-party-cloudy-${variant}.svg`;
+    if (code == 3) return base + `w-cloudy-${variant}.svg`;
     if (code == 45) return base + "default.svg";
     if (code == 48) return base + "default.svg";
     if (code == 51) return base + "default.svg";

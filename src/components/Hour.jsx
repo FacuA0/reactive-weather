@@ -3,8 +3,8 @@ import { convertWeatherToHuman, convertWeatherToIcon } from "../utils";
 function Hour({ hour }) {
     //console.log("Hour", hour);
 
-    let icon = convertWeatherToIcon(hour.weather_code);
-    let iconDesc = convertWeatherToHuman(hour.weather_code);
+    let icon = convertWeatherToIcon(hour.weather_code, hour.is_day);
+    let iconDesc = convertWeatherToHuman(hour.weather_code, hour.is_day);
 
     return (
         <div className="data-item"> 
