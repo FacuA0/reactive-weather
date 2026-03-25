@@ -4,6 +4,7 @@ import City from './components/City';
 import Now from './components/Now';
 import Day from './components/Day';
 import Hour from './components/Hour';
+import { convertWeatherToIcon, convertWeatherToHuman } from './utils';
 import './App.css';
 
 function App() {
@@ -65,6 +66,9 @@ function App() {
         setHourly(newHourly);
     }
 
+    const icon = convertWeatherToIcon(now.weather_code);
+    const iconDesc = convertWeatherToHuman(now.weather_code);
+
     const dayList = daily.map(day => (
         <Day key={"day-" + day.time} day={day}/>
     ));
@@ -91,7 +95,7 @@ function App() {
                 <City city={city} now={now} />
             </header>
 
-            <img id="sky-icon" src="src/assets/icons/w-partly-cloudy-day.svg"/>
+            <img id="sky-icon" src={icon} alt={iconDesc} title={iconDesc}/>
 
             <main>
                 <div id="data-current">
