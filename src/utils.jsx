@@ -1,33 +1,67 @@
 function convertWeatherToHuman(code) {
     if (code == 0) return "Despejado";
-    if (code == 1) return "Parcialmente despejado";
+    if (code == 1) return "Mayormente despejado";
     if (code == 2) return "Parcialmente nublado";
     if (code == 3) return "Nublado";
     if (code == 45) return "Niebla";
     if (code == 48) return "Depósito de escarcha";
-    if (code == 51) return "Llovizna ligera";
+    if (code == 51) return "Llovizna débil";
     if (code == 53) return "Llovizna";
     if (code == 55) return "Llovizna fuerte";
     if (code == 56) return "Llovizna congelada";
     if (code == 57) return "Llovizna congelada fuerte";
-    if (code == 61) return "Lluvia ligera";
+    if (code == 61) return "Lluvia débil";
     if (code == 63) return "Lluvia";
     if (code == 65) return "Lluvia fuerte";
     if (code == 66) return "Lluvia congelada";
     if (code == 67) return "Lluvia congelada fuerte";
-    if (code == 71) return "Nevada ligera";
+    if (code == 71) return "Nevada débil";
     if (code == 73) return "Nevada";
     if (code == 75) return "Nevada fuerte";
     if (code == 77) return "Granos de nieve";
-    if (code == 80) return "Chubascos ligeros";
+    if (code == 80) return "Chubascos débiles";
     if (code == 81) return "Chubascos";
     if (code == 82) return "Chubascos fuertes";
     if (code == 85) return "Chubascos de nieve";
     if (code == 86) return "Chubascos de nieve fuertes";
-    if (code == 95) return "Tormenta ligera o moderada";
+    if (code == 95) return "Tormenta débil o moderada";
     if (code == 96) return "Tormenta con granizo";
     if (code == 99) return "Tormenta con granizo fuerte";
     return `Otro (${code})`;
+}
+
+function convertWeatherToIcon(code) {
+    let base = "src/assets/icons/";
+
+    if (code == 0) return base + "w-clear-day.svg";
+    if (code == 1) return base + "w-mostly-clear-day.svg";
+    if (code == 2) return base + "w-partly-cloudy-day.svg";
+    if (code == 3) return base + "w-cloudy-day.svg";
+    if (code == 45) return base + "default.svg";
+    if (code == 48) return base + "default.svg";
+    if (code == 51) return base + "default.svg";
+    if (code == 53) return base + "default.svg";
+    if (code == 55) return base + "default.svg";
+    if (code == 56) return base + "default.svg";
+    if (code == 57) return base + "default.svg";
+    if (code == 61) return base + "default.svg";
+    if (code == 63) return base + "default.svg";
+    if (code == 65) return base + "default.svg";
+    if (code == 66) return base + "default.svg";
+    if (code == 67) return base + "default.svg";
+    if (code == 71) return base + "default.svg";
+    if (code == 73) return base + "default.svg";
+    if (code == 75) return base + "default.svg";
+    if (code == 77) return base + "default.svg";
+    if (code == 80) return base + "default.svg";
+    if (code == 81) return base + "default.svg";
+    if (code == 82) return base + "default.svg";
+    if (code == 85) return base + "default.svg";
+    if (code == 86) return base + "default.svg";
+    if (code == 95) return base + "default.svg";
+    if (code == 96) return base + "default.svg";
+    if (code == 99) return base + "default.svg";
+    return base + "default.svg";
 }
 
 function dateToHuman(date) {
@@ -64,6 +98,7 @@ function deduplicateCityNames(cities) {
 
 export {
     convertWeatherToHuman,
+    convertWeatherToIcon,
     dateToHuman,
     deduplicateCityNames
 };
