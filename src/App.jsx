@@ -21,7 +21,12 @@ function App() {
 
         setCity(city);
 
-        let res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${city.latitude}&longitude=${city.longitude}&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_mean&hourly=temperature_2m,weather_code,precipitation_probability&current=temperature_2m,relative_humidity_2m,precipitation,rain,weather_code,apparent_temperature,precipitation_probability&timezone=auto`);
+        const currentQuery = "current=temperature_2m,relative_humidity_2m,precipitation,rain,weather_code,apparent_temperature,precipitation_probability";
+        const hourlyQuery = "hourly=temperature_2m,weather_code,precipitation_probability,is_day";
+        const dailyQuery = "daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_mean";
+        const locationQuery = `latitude=${city.latitude}&longitude=${city.longitude}`;
+        
+        const res = await fetch(`https://api.open-meteo.com/v1/forecast?${locationQuery}&${dailyQuery}&${hourlyQuery}&${currentQuery}&timezone=auto`);
         let data = await res.json();
 
         data.current.timezone = data.timezone_abbreviation;
@@ -66,8 +71,11 @@ function App() {
         setHourly(newHourly);
     }
 
-    const icon = convertWeatherToIcon(now.weather_code);
-    const iconDesc = convertWeatherToHuman(now.weather_code);
+    let icon = "src/assets/icons/w-clear-day.svg", iconDesc = "Esperando...";
+    if (now) {
+        icon = convertWeatherToIcon(now.weather_code);
+        iconDesc = convertWeatherToHuman(now.weather_code);
+    }
 
     const dayList = daily.map(day => (
         <Day key={"day-" + day.time} day={day}/>
