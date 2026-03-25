@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="180"
+   height="180"
+   viewBox="0 0 47.624999 47.625"
+   version="1.1"
+   id="svg7461"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs7458">
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath21347">
+      <path
+         style="color:#000000;fill:#ffffff;stroke-width:1;stroke-linecap:round;-inkscape-stroke:none"
+         d="m 35.388671,-19.527344 c -21.078457,0 -38.3632803,17.284824 -38.3632803,38.363281 0,21.078459 17.2848233,38.365235 38.3632803,38.365235 21.078457,0 38.365234,-17.286776 38.365234,-38.365235 0,-21.078457 -17.286777,-38.363281 -38.365234,-38.363281 z m 0,18.5195315 c 11.069085,0 19.84375,8.7746657 19.84375,19.8437495 0,11.069086 -8.774665,19.843749 -19.84375,19.843749 -11.069084,0 -19.843749,-8.774663 -19.843749,-19.843749 0,-11.0690838 8.774665,-19.8437495 19.843749,-19.8437495 z"
+         id="path21349" />
+    </clipPath>
+  </defs>
+  <g
+     id="layer1">
+    <circle
+       style="opacity:1;fill:#9ba8b6;fill-opacity:1;stroke:none;stroke-width:1.52665;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+       id="path19337"
+       cx="23.8125"
+       cy="23.8125"
+       r="18.520834"
+       clip-path="url(#clipPath21347)" />
+    <path
+       style="fill:#e5e5e5;fill-opacity:1;stroke:none;stroke-width:3.81988;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+       d="M 5.5219015,44.937662 H 43.54318 c 0,0 2.494212,-3.660135 3.580789,-9.098798 1.288933,-6.451509 -1.125257,-9.858868 -3.222715,-12.569471 -2.685592,-3.470671 -7.234491,-4.462825 -12.353742,-1.313221 -5.849802,3.599069 -6.893029,7.316553 -6.893029,7.316553 0,0 -3.662649,-3.931035 -11.519982,-4.140626 -5.7007275,-0.152066 -10.2242046,3.159105 -12.32566399,8.282864 -0.9763528,2.380537 -1.1060024,4.702834 -0.1846932,7.563195 0.94432239,2.931833 4.89776759,3.959504 4.89776759,3.959504 z"
+       id="path17842" />
+  </g>
+</svg>

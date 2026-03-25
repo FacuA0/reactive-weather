@@ -91,7 +91,7 @@ function App() {
                 <City city={city} now={now} />
             </header>
 
-            <img id="sky-icon" src="src/assets/icons/w-mostly-clear-day.svg"/>
+            <img id="sky-icon" src="src/assets/icons/w-partly-cloudy-day.svg"/>
 
             <main>
                 <div id="data-current">
