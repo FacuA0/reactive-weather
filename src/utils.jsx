@@ -4,7 +4,7 @@ function convertWeatherToHuman(code) {
     if (code == 2) return "Parcialmente nublado";
     if (code == 3) return "Nublado";
     if (code == 45) return "Niebla";
-    if (code == 48) return "Depósito de escarcha";
+    if (code == 48) return "Escarcha";
     if (code == 51) return "Llovizna débil";
     if (code == 53) return "Llovizna";
     if (code == 55) return "Llovizna fuerte";

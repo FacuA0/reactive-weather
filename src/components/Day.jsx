@@ -1,7 +1,7 @@
 import { convertWeatherToHuman, dateToHuman } from "../utils";
 
 function Day({ day }) {
-    console.log("Day", day);
+    //console.log("Day", day);
 
     let maxMin = `${day.temperature_2m_max ?? "-"}°C / ${day.temperature_2m_min ?? "-"}°C`;
     let date = dateToHuman(day.time);
