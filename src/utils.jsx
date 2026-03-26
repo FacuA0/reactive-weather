@@ -36,15 +36,15 @@ function convertWeatherToIcon(code, isDay = 1) {
 
     if (code == 0) return base + `w-clear-${variant}.svg`;
     if (code == 1) return base + `w-mostly-clear-${variant}.svg`;
-    if (code == 2) return base + `w-party-cloudy-${variant}.svg`;
+    if (code == 2) return base + `w-partly-cloudy-${variant}.svg`;
     if (code == 3) return base + `w-cloudy-${variant}.svg`;
     if (code == 45) return base + `w-fog-${variant}.svg`;
     if (code == 48) return base + `w-rime-${variant}.svg`;
     if (code == 51) return base + `w-drizzle-light-${variant}.svg`;
     if (code == 53) return base + `w-drizzle-${variant}.svg`;
     if (code == 55) return base + `w-drizzle-heavy-${variant}.svg`;
-    if (code == 56) return base + "default.svg";
-    if (code == 57) return base + "default.svg";
+    if (code == 56) return base + `w-freezing-drizzle-${variant}.svg`;
+    if (code == 57) return base + `w-freezing-drizzle-heavy-${variant}.svg`;
     if (code == 61) return base + "default.svg";
     if (code == 63) return base + "default.svg";
     if (code == 65) return base + "default.svg";
