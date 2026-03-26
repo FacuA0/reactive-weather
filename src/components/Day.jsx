@@ -15,7 +15,7 @@ function Day({ day }) {
             </div>
             <p className="day-temp">{maxMin}</p>
             <div className="data-rain">
-                <img src="src/assets/icons/default.svg" width={16} alt="Probabildad de lluvia"/>
+                <img src="src/assets/icons/w-rain-day.svg" width={16} alt="Probabildad de lluvia"/>
                 <p>{day.precipitation_probability_mean ?? "-"}%</p>
             </div>
         </div>

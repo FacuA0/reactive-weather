@@ -12,7 +12,7 @@ function Hour({ hour }) {
             <img src={icon} width={56} alt={iconDesc} title={iconDesc}/>
             <p className="hour-temp">{hour.temperature_2m ?? "-"}°C</p>
             <div className="data-rain">
-                <img src="src/assets/icons/default.svg" width={16} alt="Probabildad de lluvia"/>
+                <img src="src/assets/icons/w-rain-day.svg" width={16} alt="Probabildad de lluvia"/>
                 <p>{hour.precipitation_probability ?? "-"}%</p>
             </div>
         </div>
