@@ -21,7 +21,7 @@ function App() {
 
         setCity(city);
 
-        const currentQuery = "current=temperature_2m,relative_humidity_2m,precipitation,rain,weather_code,apparent_temperature,precipitation_probability";
+        const currentQuery = "current=temperature_2m,relative_humidity_2m,precipitation,rain,weather_code,apparent_temperature,precipitation_probability,is_day";
         const hourlyQuery = "hourly=temperature_2m,weather_code,precipitation_probability,is_day";
         const dailyQuery = "daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_mean";
         const locationQuery = `latitude=${city.latitude}&longitude=${city.longitude}`;
@@ -73,8 +73,8 @@ function App() {
 
     let icon = "src/assets/icons/w-clear-day.svg", iconDesc = "Esperando...";
     if (now) {
-        icon = convertWeatherToIcon(now.weather_code);
-        iconDesc = convertWeatherToHuman(now.weather_code);
+        icon = convertWeatherToIcon(now.weather_code, now.is_day);
+        iconDesc = convertWeatherToHuman(now.weather_code, now.is_day);
     }
 
     const dayList = daily.map(day => (
