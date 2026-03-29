@@ -4,12 +4,12 @@ import { CircleFlag } from "react-circle-flags";
 
 function CitySearch(props) {
     const [search, setSearch] = useState("");
-    const [allCities, setAllCities] = useState({});
     const [cities, setCities] = useState([]);
+    const allCities = useRef({});
     const lookingUp = useRef(0);
 
     async function goToCity(cityName) {
-        let city = allCities[cityName];
+        let city = allCities.current[cityName];
         if (!city) {
             city = (await fetchCities(cityName))[0];
         }
@@ -60,11 +60,9 @@ function CitySearch(props) {
             let cities = newCities.results ?? [];
             deduplicateCityNames(cities);
 
-            let newAllCities = {...allCities};
             for (let city of cities) {
-                newAllCities[city.cityName] = city;
+                allCities.current[city.cityName] = city;
             }
-            setAllCities(newAllCities);
 
             return cities;
         }
