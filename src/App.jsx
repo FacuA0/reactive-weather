@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import CitySearch from './components/CitySearch';
 import City from './components/City';
 import Now from './components/Now';
@@ -12,6 +12,7 @@ function App() {
     const [now, setNow] = useState(null);
     const [hourly, setHourly] = useState([]);
     const [daily, setDaily] = useState([]);
+    const body = useRef(document.querySelector("body"));
 
     async function setNewCity(city) {
         if (!city) {
@@ -72,9 +73,11 @@ function App() {
     }
 
     let icon = "src/assets/icons/w-clear-day.svg", iconDesc = "Esperando...";
-    if (now) {
+    let bodyClass = "";
+    if (city && now) {
         icon = convertWeatherToIcon(now.weather_code, now.is_day);
         iconDesc = convertWeatherToHuman(now.weather_code, now.is_day);
+        bodyClass = !now.is_day ? "night" : "";
     }
 
     const dayList = daily.map(day => (
@@ -84,6 +87,8 @@ function App() {
     const hourList = hourly.map(hour => (
         <Hour key={"hour-" + hour.time} hour={hour}/>
     ));
+    
+    body.current.className = bodyClass;
 
     const searchPage = (
         <main className="search">
