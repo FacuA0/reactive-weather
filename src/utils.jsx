@@ -54,11 +54,11 @@ function convertWeatherToIcon(code, isDay = 1) {
     if (code == 73) return base + `w-snow-${variant}.svg`;
     if (code == 75) return base + `w-snow-heavy-${variant}.svg`;
     if (code == 77) return base + `w-snow-grains-${variant}.svg`;
-    if (code == 80) return base + "default.svg";
-    if (code == 81) return base + "default.svg";
-    if (code == 82) return base + "default.svg";
-    if (code == 85) return base + "default.svg";
-    if (code == 86) return base + "default.svg";
+    if (code == 80) return base + `w-rain-showers-light-${variant}.svg`;
+    if (code == 81) return base + `w-rain-showers-${variant}.svg`;
+    if (code == 82) return base + `w-rain-showers-heavy-${variant}.svg`;
+    if (code == 85) return base + `w-snow-showers-${variant}.svg`;
+    if (code == 86) return base + `w-snow-showers-heavy-${variant}.svg`;
     if (code == 95) return base + "default.svg";
     if (code == 96) return base + "default.svg";
     if (code == 99) return base + "default.svg";
