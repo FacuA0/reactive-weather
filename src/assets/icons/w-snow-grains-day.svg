@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="180"
+   height="180"
+   viewBox="0 0 47.624999 47.625"
+   version="1.1"
+   id="svg7461"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   sodipodi:docname="w-snow-grains-day.svg"
+   inkscape:export-filename="..\..\..\Documents\React\reactive-weather\src\assets\icons\w-freezing-drizzle-day.svg"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7463"
+     pagecolor="#0db9ff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     showgrid="false"
+     showguides="false"
+     inkscape:zoom="1.3026915"
+     inkscape:cx="62.178957"
+     inkscape:cy="70.623013"
+     inkscape:window-width="1366"
+     inkscape:window-height="697"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs7458" />
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       sodipodi:type="star"
+       style="fill:#ffffff;fill-opacity:1;stroke-width:18.5208;stroke-linecap:round"
+       id="path446"
+       inkscape:flatsided="false"
+       sodipodi:sides="6"
+       sodipodi:cx="22.547873"
+       sodipodi:cy="24.55851"
+       sodipodi:r1="13.164675"
+       sodipodi:r2="3.2911687"
+       sodipodi:arg1="1.5707963"
+       sodipodi:arg2="2.0943951"
+       inkscape:rounded="-3.469447e-18"
+       inkscape:randomized="0"
+       d="m 22.547873,37.723185 -1.645585,-10.314439 -9.755358,3.732102 8.109774,-6.582338 -8.109774,-6.582337 9.755358,3.732101 1.645584,-10.314439 1.645585,10.314439 9.755358,-3.732102 -8.109774,6.582338 8.109774,6.582337 -9.755358,-3.732101 z"
+       transform="translate(1.5875,-1.0583333)" />
+    <path
+       style="fill:none;stroke:#ffffff;stroke-width:1.32292;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       d="m 19.942539,11.19273 4.164893,4.164894 c 4.210642,-4.210642 4.210642,-4.210642 4.210642,-4.210642"
+       id="path506" />
+    <path
+       style="fill:none;stroke:#ffffff;stroke-width:1.32292;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       d="m 11.695649,21.106476 5.68935,-1.524456 c -1.541201,-5.751844 -1.541201,-5.751844 -1.541201,-5.751844"
+       id="path1994" />
+    <path
+       style="fill:none;stroke:#ffffff;stroke-width:1.32292;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       d="m 15.833331,33.093657 1.524457,-5.689349 c -5.751843,-1.541203 -5.751843,-1.541203 -5.751843,-1.541203"
+       id="path1996" />
+    <path
+       style="fill:none;stroke:#ffffff;stroke-width:1.32292;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       d="m 28.314777,35.482499 -4.164893,-4.164893 c -4.210642,4.210641 -4.210642,4.210641 -4.210642,4.210641"
+       id="path1998" />
+    <path
+       style="fill:none;stroke:#ffffff;stroke-width:1.32292;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       d="m 36.592092,25.887988 -5.68935,1.524457 c 1.541201,5.751843 1.541201,5.751843 1.541201,5.751843"
+       id="path2009" />
+    <path
+       style="fill:none;stroke:#ffffff;stroke-width:1.32292;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       d="m 32.41271,13.878267 -1.524456,5.68935 c 5.751842,1.541202 5.751842,1.541202 5.751842,1.541202"
+       id="path2011" />
+  </g>
+</svg>
