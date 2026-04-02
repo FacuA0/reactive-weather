@@ -67,7 +67,7 @@ function App() {
             newHourly.shift();
         }
 
-        newHourly.length = 12;
+        newHourly.length = 24;
 
         setHourly(newHourly);
     }
