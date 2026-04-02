@@ -4,7 +4,11 @@ import City from './components/City';
 import Now from './components/Now';
 import Day from './components/Day';
 import Hour from './components/Hour';
-import { convertWeatherToIcon, convertWeatherToHuman } from './utils';
+import { 
+    convertWeatherToIcon, 
+    convertWeatherToHuman,
+    calculateDayNightWeatherCodes 
+} from './utils';
 import './App.css';
 
 function App() {
@@ -49,8 +53,6 @@ function App() {
         data.current.temperatureMax = newDaily[0].temperature_2m_max;
         data.current.temperatureMin = newDaily[0].temperature_2m_min;
 
-        setDaily(newDaily);
-
         let newHourly = [];
         for (let i = 0; i < data.hourly.time.length; i++) {
             let obj = {};
@@ -61,6 +63,10 @@ function App() {
 
             newHourly.push(obj);
         }
+
+        calculateDayNightWeatherCodes(newDaily, newHourly);
+
+        setDaily(newDaily);
 
         let timeNow = new Date().getTime();
         while (new Date(newHourly[1].time).getTime() < timeNow) {

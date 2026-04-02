@@ -97,9 +97,45 @@ function deduplicateCityNames(cities) {
     }
 }
 
+function calculateDayNightWeatherCodes(days, hours) {
+    let maxCode = 0;
+    let i = 0;
+
+    // Skip first night hours of first day
+    while (!hours[i].is_day) {
+        console.log("Skipping", i, hours[i]);
+        i++;
+    }
+    
+    for (let dayI = 0; dayI < days.length; dayI++) {
+        console.log("Daying", dayI, days[dayI]);
+        maxCode = 0;
+        
+        // Day hours
+        for (; i < hours.length && hours[i].is_day; i++) {
+            console.log("Sunning", i, hours[i]);
+            maxCode = Math.max(maxCode, hours[i].weather_code);
+        }
+        
+        console.log("Code", maxCode);
+        days[dayI].weather_day_code = maxCode;
+        maxCode = 0;
+        
+        // Night hours
+        for (; i < hours.length && !hours[i].is_day; i++) {
+            console.log("Nighting", i, hours[i]);
+            maxCode = Math.max(maxCode, hours[i].weather_code);
+        }
+        
+        console.log("Code", maxCode);
+        days[dayI].weather_night_code = maxCode;
+    }
+}
+
 export {
     convertWeatherToHuman,
     convertWeatherToIcon,
     dateToHuman,
-    deduplicateCityNames
+    deduplicateCityNames,
+    calculateDayNightWeatherCodes
 };
