@@ -14,8 +14,7 @@ body {
 }
 
 body.night {
-    --is-night: 1;
-    
+    color: #FFF;
     background-color: #136;
     background-image: linear-gradient(-45deg, #025, #248);
 }
@@ -149,6 +148,10 @@ header > .filler {
 }
 header > #datos-ciudad {
     margin: 0 16px;
+}
+
+body.night .weather > header {
+    background-color: #FFF2;
 }
 
 .weather > main {
