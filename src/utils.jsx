@@ -98,7 +98,7 @@ function deduplicateCityNames(cities) {
 }
 
 function calculateDayNightWeatherCodes(days, hours) {
-    let maxCode = 0;
+    let maxCode = 0, maxCodeAllowed = 0;
     let i = 0;
 
     // Skip first night hours of first day
@@ -111,15 +111,30 @@ function calculateDayNightWeatherCodes(days, hours) {
         
         // Day hours
         for (; i < hours.length && hours[i].is_day; i++) {
-            maxCode = Math.max(maxCode, hours[i].weather_code);
+            let code = hours[i].weather_code;
+            if (code > maxCodeAllowed) {
+                maxCode = maxCodeAllowed;
+                maxCodeAllowed = code;
+            }
+            else {
+                maxCode = Math.max(maxCode, code);
+            }
         }
         
         days[dayI].weather_day_code = maxCode;
         maxCode = 0;
+        maxCodeAllowed = 0;
         
         // Night hours
         for (; i < hours.length && !hours[i].is_day; i++) {
-            maxCode = Math.max(maxCode, hours[i].weather_code);
+            let code = hours[i].weather_code;
+            if (code > maxCodeAllowed) {
+                maxCode = maxCodeAllowed;
+                maxCodeAllowed = code;
+            }
+            else {
+                maxCode = Math.max(maxCode, code);
+            }
         }
         
         days[dayI].weather_night_code = maxCode;
