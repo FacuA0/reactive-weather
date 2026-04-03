@@ -26,7 +26,7 @@ function App() {
 
         setCity(city);
 
-        const currentQuery = "current=temperature_2m,relative_humidity_2m,precipitation,rain,weather_code,apparent_temperature,precipitation_probability,is_day";
+        const currentQuery = "current=temperature_2m,relative_humidity_2m,precipitation,rain,weather_code,apparent_temperature,is_day";
         const hourlyQuery = "hourly=temperature_2m,weather_code,precipitation_probability,is_day";
         const dailyQuery = "daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_mean";
         const locationQuery = `latitude=${city.latitude}&longitude=${city.longitude}`;
@@ -36,8 +36,6 @@ function App() {
 
         data.current.timezone = data.timezone_abbreviation;
         data.current.utcOffset = data.utc_offset_seconds;
-
-        setNow(data.current);
 
         let newDaily = [];
         for (let i = 0; i < data.daily.time.length; i++) {
@@ -52,6 +50,9 @@ function App() {
 
         data.current.temperatureMax = newDaily[0].temperature_2m_max;
         data.current.temperatureMin = newDaily[0].temperature_2m_min;
+        data.current.precipitationProbability = newDaily[0].precipitation_probability_mean;
+
+        setNow(data.current);
 
         let newHourly = [];
         for (let i = 0; i < data.hourly.time.length; i++) {
@@ -107,7 +108,9 @@ function App() {
     const weatherPage = (
         <div className="weather">
             <header>
-                <button onClick={() => setCity(null)}>Volver</button>
+                <button id="btn-back" onClick={() => setCity(null)} title="Ir atrás">
+                    <img src="src/assets/icons/back.svg" height="28"/>
+                </button>
                 <img id="logo" src="src/assets/icons/logo.svg" height="96"/>
                 <div className="filler"></div>
 
@@ -122,14 +125,14 @@ function App() {
                 </div>
 
                 <div id="data-hours">
-                    <h2>Datos por hora</h2>
+                    <h2>Próximas 24 horas</h2>
                     <div className="data-items">
                         {hourList}
                     </div>
                 </div>
 
                 <div id="data-days">
-                    <h2>Datos por día</h2>
+                    <h2>Próximos 7 días</h2>
                     <div className="data-items">
                         {dayList}
                     </div>

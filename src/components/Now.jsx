@@ -14,7 +14,7 @@ function Now({ now }) {
                 <p><b>Máx:</b> {now.temperatureMax ?? "-"}°C / <b>Mín:</b> {now.temperatureMin ?? "-"}°C</p>
             </div>
             <div className="current-column">
-                <p><b>Probabilidad de lluvia:</b> {now.precipitation_probability ?? "-"}%</p>
+                <p><b>Probabilidad de lluvia:</b> {now.precipitationProbability ?? "-"}%</p>
                 <p><b>Precipitaciones:</b> {now.precipitation ?? "-"}mm</p>
                 <p><b>Humedad:</b> {now.relative_humidity_2m ?? "-"}%</p>
             </div>

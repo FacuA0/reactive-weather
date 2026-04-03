@@ -143,6 +143,36 @@ div.weather {
     right: 0;
 }
 
+#btn-back {
+    border: 0;
+    padding: 12px;
+    margin: 0 16px 0 16px;
+    border-radius: 8px;
+    background-color: #FFF0;
+    transition: background-color 0.12s ease-in-out;
+}
+
+#btn-back:hover {
+    background-color: #FFF2;
+}
+
+#btn-back:active {
+    background-color: #FFF4;
+}
+
+#btn-back > img {
+    margin-bottom: -2px;
+    transition: transform 0.12s ease-in-out;
+}
+
+#btn-back:hover > img {
+    transform: scale(1.06);
+}
+
+#btn-back:active > img {
+    transform: scale(1.16);
+}
+
 header > .filler {
     flex-grow: 1;
 }
