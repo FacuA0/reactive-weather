@@ -5,9 +5,9 @@ function Day({ day }) {
 
     let maxMin = `${day.temperature_2m_max ?? "-"}°C / ${day.temperature_2m_min ?? "-"}°C`;
     let date = dateToHuman(day.time);
-    let dayIcon = convertWeatherToIcon(day.weather_day_code);
+    let dayIcon = convertWeatherToIcon(day.weather_day_code, true);
     let dayDesc = convertWeatherToHuman(day.weather_day_code);
-    let nightIcon = convertWeatherToIcon(day.weather_night_code);
+    let nightIcon = convertWeatherToIcon(day.weather_night_code, false);
     let nightDesc = convertWeatherToHuman(day.weather_night_code);
 
     return (
