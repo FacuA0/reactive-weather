@@ -78,7 +78,7 @@ function CitySearch(props) {
     const cityList2 = cities.map(city => (
         <button key={"city-" + city.id} onClick={() => goToCity(city.cityName)}>
             <CircleFlag countryCode={city.country_code.toLowerCase()} height="24" width="24"/>
-            {city.cityName}
+            <span>{city.cityName}</span>
         </button>
     ));
 
@@ -95,7 +95,6 @@ function CitySearch(props) {
                 <input 
                     id="input-city"
                     type="text"
-                    size="45"
                     placeholder="Busca tu ciudad..."
                     value={search}
                     onChange={handleChange}/>
