@@ -79,6 +79,12 @@ function App() {
         setHourly(newHourly);
     }
 
+    function listScrolled(evt) {
+        let elem = evt.target;
+        elem.classList.toggle("scroll-s", elem.scrollLeft > 0);
+        elem.classList.toggle("scroll-e", elem.scrollLeft < elem.scrollWidth - elem.clientWidth);
+    }
+
     let icon = "src/assets/icons/w-clear-day.svg", iconDesc = "Esperando...";
     let bodyClass = "";
     if (city && now) {
@@ -127,14 +133,14 @@ function App() {
 
                     <div id="data-hours">
                         <h2>Próximas 24 horas</h2>
-                        <div className="data-items">
+                        <div className="data-items" onScroll={listScrolled}>
                             {hourList}
                         </div>
                     </div>
 
                     <div id="data-days">
                         <h2>Próximos 7 días</h2>
-                        <div className="data-items">
+                        <div className="data-items" onScroll={listScrolled}>
                             {dayList}
                         </div>
                     </div>
