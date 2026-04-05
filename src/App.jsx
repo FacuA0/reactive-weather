@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import CitySearch from './components/CitySearch';
+import Location from './components/Location';
 import City from './components/City';
 import Now from './components/Now';
 import Day from './components/Day';
@@ -108,13 +109,7 @@ function App() {
             <img id="logo" src="src/assets/icons/logo.svg"/>
             <p>Busca la ciudad que quieras, y obtén datos del clima en segundos.</p>
             <CitySearch setCity={setNewCity} />
-            <div>
-                <p>...o usa tu ubicación exacta (requiere permisos)</p>
-                <button>
-                    <img id="logo" width="24" src="src/assets/icons/back.svg"/>
-                    Usar ubicación
-                </button>
-            </div>
+            <Location/>
         </main>
     );
 
