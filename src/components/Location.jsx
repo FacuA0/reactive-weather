@@ -6,9 +6,20 @@ function Location(props) {
 
     function getLocation() {
         function success(pos) {
-            alert(`Coordenadas: Lat: ${pos.coords.latitude}, Lon: ${pos.coords.longitude}`);
             setLocating(false);
+
+            let city = {
+                cityName: "No Se, Algun Lado",
+                country_code: "ar",
+                latitude: pos.coords.latitude,
+                longitude: pos.coords.longitude
+            };
+
+            console.log(city);
+
+            props.setCity(city);
         }
+        
         function error(err) {
             console.error(err);
             alert(`Hubo un error: ${err}`);
