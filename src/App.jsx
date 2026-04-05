@@ -117,27 +117,29 @@ function App() {
                 <City city={city} now={now} />
             </header>
 
-            <img id="sky-icon" src={icon} alt={iconDesc} title={iconDesc}/>
-
-            <main>
-                <div id="data-current">
-                    <Now now={now} />
-                </div>
-
-                <div id="data-hours">
-                    <h2>Próximas 24 horas</h2>
-                    <div className="data-items">
-                        {hourList}
+            <div>
+                <img id="sky-icon" src={icon} alt={iconDesc} title={iconDesc}/>
+                
+                <main>
+                    <div id="data-current">
+                        <Now now={now} />
                     </div>
-                </div>
 
-                <div id="data-days">
-                    <h2>Próximos 7 días</h2>
-                    <div className="data-items">
-                        {dayList}
+                    <div id="data-hours">
+                        <h2>Próximas 24 horas</h2>
+                        <div className="data-items">
+                            {hourList}
+                        </div>
                     </div>
-                </div>
-            </main>
+
+                    <div id="data-days">
+                        <h2>Próximos 7 días</h2>
+                        <div className="data-items">
+                            {dayList}
+                        </div>
+                    </div>
+                </main>
+            </div>
         </div>
     );
 
