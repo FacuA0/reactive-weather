@@ -118,8 +118,8 @@ function App() {
             </header>
 
             <div>
-                <img id="sky-icon" src={icon} alt={iconDesc} title={iconDesc}/>
-                
+                <img id="sky-icon" src={icon} width="180" alt={iconDesc} title={iconDesc}/>
+
                 <main>
                     <div id="data-current">
                         <Now now={now} />
