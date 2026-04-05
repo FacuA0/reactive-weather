@@ -145,10 +145,10 @@ button:active > #search-icon  {
     WEATHER PAGE STYLES
 */
 
-div.weather {
-    display: flex;
-    align-items: start;
+.weather {
     padding-top: 96px;
+    display: flex;
+    justify-content: center;
 }
 
 .weather > header {
@@ -159,6 +159,10 @@ div.weather {
     top: 0;
     left: 0;
     right: 0;
+}
+
+.weather > div {
+    display: inline-block;
 }
 
 #btn-back {
@@ -202,7 +206,7 @@ body.night .weather > header {
     background-color: #FFF2;
 }
 
-.weather > main {
+.weather > div > main {
     box-sizing: border-box;
     padding-left: calc(32px + 180px + 64px);
     width: 960px;
