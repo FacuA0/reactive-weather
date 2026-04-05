@@ -153,6 +153,7 @@ button:active > #search-icon  {
 
 .weather > header {
     background-color: #FFF4;
+    backdrop-filter: blur(8px);
     display: flex;
     align-items: center;
     position: fixed;
@@ -245,6 +246,16 @@ h2 {
     display: flex;
     overflow-x: scroll;
     gap: 6px;
+}
+
+.data-items.scroll-s {
+    mask: linear-gradient(90deg, #FFF0, #FFFF 8px);
+}
+.data-items.scroll-e {
+    mask: linear-gradient(270deg, #FFF0, #FFFF 8px);
+}
+.data-items.scroll-s.scroll-e {
+    mask: linear-gradient(90deg, #FFF0, #FFFF 8px, #FFFF calc(100% - 8px), #FFF0);
 }
 
 .data-item {
