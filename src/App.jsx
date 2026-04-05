@@ -111,7 +111,7 @@ function App() {
                 <button id="btn-back" onClick={() => setCity(null)} title="Ir atrás">
                     <img src="src/assets/icons/back.svg" height="28"/>
                 </button>
-                <img id="logo" src="src/assets/icons/logo.svg" height="96"/>
+                <img id="logo" src="src/assets/icons/logo.svg" alt="Logo Reactive Weather" height="96"/>
                 <div className="filler"></div>
 
                 <City city={city} now={now} />

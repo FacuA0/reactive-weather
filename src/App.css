@@ -221,10 +221,9 @@ body.night .weather > header {
 }
 
 #data-current, #data-hours, #data-days {
-    padding: 20px;
     background-color: #FFF2;
-    margin-top: 24px;
-    margin-bottom: 24px;
+    margin: 24px 0;
+    padding: 20px;
     border-radius: 24px;
 }
 
@@ -319,6 +318,12 @@ li {
     .weather {
         padding-top: 66px;
     }
+
+    .weather > div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
     
     .weather > div > main {
         padding-left: 0;
@@ -327,7 +332,11 @@ li {
 
     #sky-icon {
         position: static;
-        margin-top: 24px;
-        margin-left: 0;
+        margin: 24px 0 0;
+        width: 120px;
+    }
+    
+    #data-current, #data-hours, #data-days {
+        margin: 16px 0;
     }
 }
