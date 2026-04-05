@@ -108,6 +108,13 @@ function App() {
             <img id="logo" src="src/assets/icons/logo.svg"/>
             <p>Busca la ciudad que quieras, y obtén datos del clima en segundos.</p>
             <CitySearch setCity={setNewCity} />
+            <div>
+                <p>...o usa tu ubicación exacta (requiere permisos)</p>
+                <button>
+                    <img id="logo" width="24" src="src/assets/icons/back.svg"/>
+                    Usar ubicación
+                </button>
+            </div>
         </main>
     );
 
