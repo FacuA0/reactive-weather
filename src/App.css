@@ -168,7 +168,7 @@ button:active > #search-icon  {
 #btn-back {
     border: 0;
     padding: 12px;
-    margin: 0 16px 0 16px;
+    margin: 0 16px;
     border-radius: 8px;
     background-color: #FFF0;
     transition: background-color 0.12s ease-in-out;
@@ -197,6 +197,7 @@ button:active > #search-icon  {
 
 header > .filler {
     flex-grow: 1;
+    margin-left: 16px;
 }
 header > #datos-ciudad {
     margin: 0 16px;
@@ -289,4 +290,44 @@ p {
 
 li {
     margin: 1.2em 0;
+}
+
+/*
+    MOBILE STYLES
+*/
+@media (width < 720px) {
+    #btn-back {
+        margin: 0 8px;
+    }
+
+    #btn-back > img {
+        height: 24px;
+    }
+
+    header > #logo {
+        height: 66px;
+    }
+    
+    header > .filler {
+        margin-left: 8px;
+    }
+
+    header > #datos-ciudad {
+        margin: 0 8px;
+    }
+
+    .weather {
+        padding-top: 66px;
+    }
+    
+    .weather > div > main {
+        padding-left: 0;
+        max-width: calc(100vw - 16px * 2);
+    }
+
+    #sky-icon {
+        position: static;
+        margin-top: 24px;
+        margin-left: 0;
+    }
 }
