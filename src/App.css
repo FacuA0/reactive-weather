@@ -141,6 +141,33 @@ button:active > #search-icon  {
     text-align: start;
 }
 
+#location-box {
+    max-width: 200px;
+    margin-top: 16px;
+    padding: 12px;
+    border: 2px dashed #FF0;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+#location-box > p {
+    text-align: center;
+    margin-top: 0;
+}
+
+#location-box > button {
+    padding: 8px;
+    display: flex;
+    align-items: center;
+}
+
+#location-box > button > img {
+    margin-right: 8px;
+}
+
 /*
     WEATHER PAGE STYLES
 */

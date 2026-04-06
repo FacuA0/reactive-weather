@@ -72,7 +72,7 @@ function Location(props) {
         <div id="location-box">
             <p>{!error ? "...o usa tu ubicación actual (requiere permisos)" : "Hubo un error: " + error}</p>
             <button onClick={getLocation} disabled={locating}>
-                <img id="logo" width="24" src="src/assets/icons/back.svg"/>
+                <img id="location-icon" width="24" src="src/assets/icons/back.svg"/>
                 {locatingText}
             </button>
         </div>
