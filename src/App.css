@@ -158,6 +158,10 @@ button:active > #search-icon  {
     margin-top: 0;
 }
 
+#location-box > #location-error {
+    color: #A00;
+}
+
 #location-box > button {
     padding: 8px;
     display: flex;

@@ -38,7 +38,6 @@ function Location(props) {
             }
             catch (err) {
                 console.error(err);
-                alert("Error buscando ciudad: " + err);
                 setLocating(0);
                 setError(err);
             }
@@ -46,7 +45,6 @@ function Location(props) {
 
         function error(err) {
             console.error(err);
-            alert(`Hubo un error: ${err}`);
             setLocating(0);
             setError(err);
         }
@@ -62,17 +60,23 @@ function Location(props) {
         setError(null);
     }
 
-    let locatingText = "Usar ubicación";
+    let locatingText = "Usar ubicación", locationError;
     if (locating == 1)
         locatingText = "Ubicando...";
     if (locating == 2)
         locatingText = "Buscando ciudad...";
 
+    if (error?.code == 1)
+        locationError = "Permiso denegado.";
+    if (error?.code == 2)
+        locationError = "Ubicación no disponible.";
+
     return (
         <div id="location-box">
-            <p>{!error ? "...o usa tu ubicación actual (requiere permisos)" : "Hubo un error: " + error}</p>
+            <p>...o usa tu ubicación actual (requiere permisos)</p>
+            <p id="location-error" style={{display: error ? "block" : "none"}}>{locationError}</p>
             <button onClick={getLocation} disabled={locating}>
-                <img id="location-icon" width="24" src="src/assets/icons/back.svg"/>
+                <img id="location-icon" width="24" src="src/assets/icons/location.svg"/>
                 {locatingText}
             </button>
         </div>
