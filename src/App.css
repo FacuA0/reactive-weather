@@ -163,9 +163,25 @@ button:active > #search-icon  {
 }
 
 #location-box > button {
+    background-color: #FA0;
+    border: 0;
+    border-radius: 8px;
+    box-shadow: 1px 1px 4px 0 #0003;
+    transition: all 0.2s ease-in-out;
+
     padding: 8px;
     display: flex;
     align-items: center;
+}
+
+#location-box > button:enabled:hover {
+    background-color: #FB2;
+    box-shadow: 1px 1px 4px 1px #0003;
+}
+
+#location-box > button:enabled:active {
+    background-color: #FC5;
+    box-shadow: 1px 1px 4px 2px #0003;
 }
 
 #location-box > button > img {
