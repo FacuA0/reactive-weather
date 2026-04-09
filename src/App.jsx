@@ -11,6 +11,7 @@ import {
     calculateDayNightWeatherCodes 
 } from './utils';
 import './App.css';
+import { mainLogo, backIcon, wClearDayIcon } from './icons';
 
 function App() {
     const [city, setCity] = useState(null); // If null -> search page, otherwise weather page
@@ -86,7 +87,7 @@ function App() {
         elem.classList.toggle("scroll-e", elem.scrollLeft < Math.floor(elem.scrollWidth - elem.clientWidth));
     }
 
-    let icon = "src/assets/icons/w-clear-day.svg", iconDesc = "Esperando...";
+    let icon = wClearDayIcon, iconDesc = "Esperando...";
     let bodyClass = "";
     if (city && now) {
         icon = convertWeatherToIcon(now.weather_code, now.is_day);
@@ -106,7 +107,7 @@ function App() {
 
     const searchPage = (
         <main className="search">
-            <img id="logo" src="src/assets/icons/logo.svg"/>
+            <img id="logo" src={mainLogo}/>
             <p>Busca la ciudad que quieras, y obtén datos del clima en segundos.</p>
             <CitySearch setCity={setNewCity}/>
             <Location setCity={setNewCity}/>
@@ -117,9 +118,9 @@ function App() {
         <div className="weather">
             <header>
                 <button id="btn-back" onClick={() => setCity(null)} title="Ir atrás">
-                    <img src="src/assets/icons/back.svg" height="28"/>
+                    <img src={backIcon} height="28"/>
                 </button>
-                <img id="logo" src="src/assets/icons/logo.svg" alt="Logo Reactive Weather" height="96"/>
+                <img id="logo" src={mainLogo} alt="Logo Reactive Weather" height="96"/>
                 <div className="filler"></div>
 
                 <City city={city} now={now}/>

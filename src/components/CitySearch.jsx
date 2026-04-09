@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { deduplicateCityNames } from "../utils";
+import { searchIcon } from "../icons";
 import { CircleFlag } from "react-circle-flags";
 
 function CitySearch(props) {
@@ -88,7 +89,7 @@ function CitySearch(props) {
                 <button type="submit">
                     <img 
                         id="search-icon"
-                        src="src/assets/icons/search.svg"
+                        src={searchIcon}
                         alt="Buscar"
                         width="20"/>
                 </button>

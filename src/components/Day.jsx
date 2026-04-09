@@ -1,4 +1,5 @@
 import { convertWeatherToHuman, convertWeatherToIcon, dateToHuman } from "../utils";
+import { wRainDayIcon } from "../icons";
 
 function Day({ day }) {
     //console.log("Day", day);
@@ -19,7 +20,7 @@ function Day({ day }) {
             </div>
             <p className="day-temp">{maxMin}</p>
             <div className="data-rain">
-                <img src="src/assets/icons/w-rain-day.svg" width={16} alt="Probabildad de lluvia"/>
+                <img src={wRainDayIcon} width={16} alt="Probabildad de lluvia"/>
                 <p>{day.precipitation_probability_mean ?? "-"}%</p>
             </div>
         </div>
