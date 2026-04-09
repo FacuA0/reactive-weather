@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { locationIcon } from "../icons";
 
 function Location(props) {
     const [error, setError] = useState(null);
@@ -77,7 +78,7 @@ function Location(props) {
             <p>...o usa tu ubicación actual (requiere permisos)</p>
             <p id="location-error" style={{display: error ? "block" : "none"}}>{locationError}</p>
             <button onClick={getLocation} disabled={locating}>
-                <img id="location-icon" width="24" src="src/assets/icons/location.svg"/>
+                <img id="location-icon" width="24" src={locationIcon}/>
                 {locatingText}
             </button>
         </div>
