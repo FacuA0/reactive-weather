@@ -1,4 +1,5 @@
 on:
+  workflow_dispatch:
   push:
     branches:
       - "live" # change to the branch you wish to deploy from
