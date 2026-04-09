@@ -1,3 +1,5 @@
+import { defaultIcon } from "./icons";
+
 function convertWeatherToHuman(code) {
     if (code == 0) return "Despejado";
     if (code == 1) return "Mayormente despejado";
@@ -31,38 +33,41 @@ function convertWeatherToHuman(code) {
 }
 
 function convertWeatherToIcon(code, isDay = 1) {
-    let base = "src/assets/icons/";
     let variant = isDay ? "day" : "night";
 
-    if (code == 0) return base + `w-clear-${variant}.svg`;
-    if (code == 1) return base + `w-mostly-clear-${variant}.svg`;
-    if (code == 2) return base + `w-partly-cloudy-${variant}.svg`;
-    if (code == 3) return base + `w-cloudy-${variant}.svg`;
-    if (code == 45) return base + `w-fog-${variant}.svg`;
-    if (code == 48) return base + `w-rime-${variant}.svg`;
-    if (code == 51) return base + `w-drizzle-light-${variant}.svg`;
-    if (code == 53) return base + `w-drizzle-${variant}.svg`;
-    if (code == 55) return base + `w-drizzle-heavy-${variant}.svg`;
-    if (code == 56) return base + `w-freezing-drizzle-${variant}.svg`;
-    if (code == 57) return base + `w-freezing-drizzle-heavy-${variant}.svg`;
-    if (code == 61) return base + `w-rain-light-${variant}.svg`;
-    if (code == 63) return base + `w-rain-${variant}.svg`;
-    if (code == 65) return base + `w-rain-heavy-${variant}.svg`;
-    if (code == 66) return base + `w-frezing-rain-${variant}.svg`;
-    if (code == 67) return base + `w-frezing-rain-heavy-${variant}.svg`;
-    if (code == 71) return base + `w-snow-light-${variant}.svg`;
-    if (code == 73) return base + `w-snow-${variant}.svg`;
-    if (code == 75) return base + `w-snow-heavy-${variant}.svg`;
-    if (code == 77) return base + `w-snow-grains-${variant}.svg`;
-    if (code == 80) return base + `w-rain-showers-light-${variant}.svg`;
-    if (code == 81) return base + `w-rain-showers-${variant}.svg`;
-    if (code == 82) return base + `w-rain-showers-heavy-${variant}.svg`;
-    if (code == 85) return base + `w-snow-showers-${variant}.svg`;
-    if (code == 86) return base + `w-snow-showers-heavy-${variant}.svg`;
-    if (code == 95) return base + `w-storm-${variant}.svg`;
-    if (code == 96) return base + `w-storm-hail-${variant}.svg`;
-    if (code == 99) return base + `w-storm-hail-heavy-${variant}.svg`;
-    return base + "default.svg";
+    function getIconUrl(name) {
+        return new URL(`./assets/icons/${name}.svg`, import.meta.url).href;
+    }
+
+    if (code == 0) return getIconUrl(`w-clear-${variant}`);
+    if (code == 1) return getIconUrl(`w-mostly-clear-${variant}`);
+    if (code == 2) return getIconUrl(`w-partly-cloudy-${variant}`);
+    if (code == 3) return getIconUrl(`w-cloudy-${variant}`);
+    if (code == 45) return getIconUrl(`w-fog-${variant}`);
+    if (code == 48) return getIconUrl(`w-rime-${variant}`);
+    if (code == 51) return getIconUrl(`w-drizzle-light-${variant}`);
+    if (code == 53) return getIconUrl(`w-drizzle-${variant}`);
+    if (code == 55) return getIconUrl(`w-drizzle-heavy-${variant}`);
+    if (code == 56) return getIconUrl(`w-freezing-drizzle-${variant}`);
+    if (code == 57) return getIconUrl(`w-freezing-drizzle-heavy-${variant}`);
+    if (code == 61) return getIconUrl(`w-rain-light-${variant}`);
+    if (code == 63) return getIconUrl(`w-rain-${variant}`);
+    if (code == 65) return getIconUrl(`w-rain-heavy-${variant}`);
+    if (code == 66) return getIconUrl(`w-frezing-rain-${variant}`);
+    if (code == 67) return getIconUrl(`w-frezing-rain-heavy-${variant}`);
+    if (code == 71) return getIconUrl(`w-snow-light-${variant}`);
+    if (code == 73) return getIconUrl(`w-snow-${variant}`);
+    if (code == 75) return getIconUrl(`w-snow-heavy-${variant}`);
+    if (code == 77) return getIconUrl(`w-snow-grains-${variant}`);
+    if (code == 80) return getIconUrl(`w-rain-showers-light-${variant}`);
+    if (code == 81) return getIconUrl(`w-rain-showers-${variant}`);
+    if (code == 82) return getIconUrl(`w-rain-showers-heavy-${variant}`);
+    if (code == 85) return getIconUrl(`w-snow-showers-${variant}`);
+    if (code == 86) return getIconUrl(`w-snow-showers-heavy-${variant}`);
+    if (code == 95) return getIconUrl(`w-storm-${variant}`);
+    if (code == 96) return getIconUrl(`w-storm-hail-${variant}`);
+    if (code == 99) return getIconUrl(`w-storm-hail-heavy-${variant}`);
+    return defaultIcon;
 }
 
 function dateToHuman(date) {
