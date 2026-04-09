@@ -13,7 +13,7 @@ import {
 import './App.css';
 
 function App() {
-    const [city, setCity] = useState(null);
+    const [city, setCity] = useState(null); // If null -> search page, otherwise weather page
     const [now, setNow] = useState(null);
     const [hourly, setHourly] = useState([]);
     const [daily, setDaily] = useState([]);
@@ -83,14 +83,14 @@ function App() {
     function listScrolled(evt) {
         let elem = evt.target;
         elem.classList.toggle("scroll-s", elem.scrollLeft > 0);
-        elem.classList.toggle("scroll-e", elem.scrollLeft < elem.scrollWidth - elem.clientWidth);
+        elem.classList.toggle("scroll-e", elem.scrollLeft < Math.floor(elem.scrollWidth - elem.clientWidth));
     }
 
     let icon = "src/assets/icons/w-clear-day.svg", iconDesc = "Esperando...";
     let bodyClass = "";
     if (city && now) {
         icon = convertWeatherToIcon(now.weather_code, now.is_day);
-        iconDesc = convertWeatherToHuman(now.weather_code, now.is_day);
+        iconDesc = convertWeatherToHuman(now.weather_code);
         bodyClass = !now.is_day ? "night" : "";
     }
 
@@ -108,8 +108,8 @@ function App() {
         <main className="search">
             <img id="logo" src="src/assets/icons/logo.svg"/>
             <p>Busca la ciudad que quieras, y obtén datos del clima en segundos.</p>
-            <CitySearch setCity={setNewCity} />
-            <Location setCity={setNewCity} />
+            <CitySearch setCity={setNewCity}/>
+            <Location setCity={setNewCity}/>
         </main>
     );
 
@@ -122,7 +122,7 @@ function App() {
                 <img id="logo" src="src/assets/icons/logo.svg" alt="Logo Reactive Weather" height="96"/>
                 <div className="filler"></div>
 
-                <City city={city} now={now} />
+                <City city={city} now={now}/>
             </header>
 
             <div>
@@ -130,7 +130,7 @@ function App() {
 
                 <main>
                     <div id="data-current">
-                        <Now now={now} />
+                        <Now now={now}/>
                     </div>
 
                     <div id="data-hours">
