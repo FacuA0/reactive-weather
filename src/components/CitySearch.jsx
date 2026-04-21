@@ -84,28 +84,30 @@ function CitySearch(props) {
     ));
 
     return (
-        <form id="city-search" onSubmit={handleSubmit}>
-            <div id="search-bar">
-                <button type="submit">
-                    <img 
-                        id="search-icon"
-                        src={searchIcon}
-                        alt="Buscar"
-                        width="20"/>
-                </button>
-                <input 
-                    id="input-city"
-                    type="text"
-                    placeholder="Busca tu ciudad..."
-                    value={search}
-                    onChange={handleChange}/>
-            </div>
-            <div
-                id="search-suggestions"
-                className={cityList2.length == 0 ? "hidden" : ""}>
-                {cityList2}
-            </div>
-        </form>
+        <div id="div-city-search">
+            <form id="city-search" onSubmit={handleSubmit}>
+                <div id="search-bar">
+                    <button type="submit">
+                        <img 
+                            id="search-icon"
+                            src={searchIcon}
+                            alt="Buscar"
+                            width="20"/>
+                    </button>
+                    <input 
+                        id="input-city"
+                        type="text"
+                        placeholder="Busca tu ciudad..."
+                        value={search}
+                        onChange={handleChange}/>
+                </div>
+                <div
+                    id="search-suggestions"
+                    className={cityList2.length == 0 ? "hidden" : ""}>
+                    {cityList2}
+                </div>
+            </form>
+        </div>
     );
 }
 
