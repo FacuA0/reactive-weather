@@ -54,7 +54,7 @@ function Location(props) {
         let userRequest;
         if (usernameRef.current == null) {
             // Create this file at the project root with a GeoNames username
-            userRequest = fetch("/geotoken.local")
+            userRequest = fetch("./geotoken.local")
                 .then(res => res.text());
         }
 
