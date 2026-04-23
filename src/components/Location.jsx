@@ -4,7 +4,6 @@ import { locationIcon } from "../icons";
 function Location(props) {
     const [error, setError] = useState(null);
     const [locating, setLocating] = useState(0);
-    const usernameRef = useRef(null);
 
     function getLocation() {
         async function success(pos) {
@@ -17,13 +16,8 @@ function Location(props) {
             setLocating(2);
 
             try {
-                if (usernameRef.current == null) {
-                    usernameRef.current = await userRequest;
-                }
-                let username = usernameRef.current;
-    
-                let query = `lat=${latitude}&lng=${longitude}&lang=${language}&username=${username}`;
-                let cityRequest = await fetch(`http://api.geonames.org/findNearbyPlaceNameJSON?${query}`);
+                let query = `lat=${latitude}&lng=${longitude}&lang=${language}`;
+                let cityRequest = await fetch(`https://getcities-rw.facua0.deno.net/v1/getCityByLatLng?${query}`);
                 let cityJson = (await cityRequest.json()).geonames[0];
     
                 let city = {
@@ -51,12 +45,6 @@ function Location(props) {
         }
 
         navigator.geolocation.getCurrentPosition(success, error);
-        let userRequest;
-        if (usernameRef.current == null) {
-            // Create this file at the project root with a GeoNames username
-            userRequest = fetch("./geotoken.local")
-                .then(res => res.text());
-        }
 
         setLocating(1);
         setError(null);
