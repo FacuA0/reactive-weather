@@ -3,9 +3,10 @@ body {
     min-height: 100vh;
     box-sizing: border-box;
     background-color: #5AF;
-    background-image: linear-gradient(-45deg, #24F, #3CF);
+    background-image: linear-gradient(180deg, #25F, #39F);
     background-attachment: fixed;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #FFF;
     
     display: flex;
     justify-content: center;
@@ -13,8 +14,16 @@ body {
     transition: background-image 1s ease;
 }
 
+a {
+    color: inherit;
+    font-weight: bold;
+}
+
+a:active {
+    color: #DDF;
+}
+
 body.night {
-    color: #FFF;
     background-color: #136;
     background-image: linear-gradient(-45deg, #025, #248);
 }
@@ -206,7 +215,7 @@ button:active > #search-icon  {
 }
 
 .weather > header {
-    background-color: #FFF4;
+    background-color: #FFF3;
     backdrop-filter: blur(8px);
     display: flex;
     align-items: center;
@@ -397,7 +406,7 @@ li {
 
     #sky-icon {
         position: static;
-        margin: 24px 0 0;
+        margin: 56px 0 16px;
         width: 120px;
     }
     
