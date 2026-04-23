@@ -17,9 +17,8 @@ function Location(props) {
 
             try {
                 let query = `lat=${latitude}&lng=${longitude}&lang=${language}`;
-                let url = `https://getcities-rw.facua0.deno.net/v1/getCityByLatLng?${query}`;
-                let cityRequest = await fetch(url, {referrerPolicy: "no-referrer-when-downgrade"});
-                let cityJson = (await cityRequest.json()).geonames[0];
+                let cityRes = await fetch(`https://getcities-rw.facua0.deno.net/v1/getCityByLatLng?${query}`);
+                let cityJson = (await cityRes.json()).geonames[0];
     
                 let city = {
                     cityName: `${cityJson.name}, ${cityJson.countryName}`,
