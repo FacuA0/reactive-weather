@@ -147,6 +147,8 @@ function App() {
                             {dayList}
                         </div>
                     </div>
+
+                    <p>Datos del tiempo de <a href="https://open-meteo.com/">Open-Meteo.com</a></p>
                 </main>
             </div>
         </div>
