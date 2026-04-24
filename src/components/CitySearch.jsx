@@ -7,7 +7,7 @@ function CitySearch(props) {
     const [search, setSearch] = useState("");
     const [cities, setCities] = useState([]);
     const allCities = useRef({});
-    const lookingUp = useRef(0);
+    const lookingUp = useRef({id: 0, sig: null});
 
     async function goToCity(cityName) {
         let city = allCities.current[cityName];
@@ -30,26 +30,32 @@ function CitySearch(props) {
         let newSearch = e.target.value;
         setSearch(newSearch);
         
-        if (lookingUp.current != 0) {
-            clearTimeout(lookingUp.current);
-            lookingUp.current = 0;
+        if (lookingUp.current.id != 0) {
+            clearTimeout(lookingUp.current.id);
+            lookingUp.current.id = 0;
         }
 
         if (newSearch.length > 1) {
-            lookingUp.current = setTimeout(async () => {
-                lookingUp.current = 0;
-                setCities(await fetchCities(newSearch));
-            }, 500);
+            lookingUp.current.id = setTimeout(async () => {
+                lookingUp.current.id = 0;
+
+                let abort = new AbortController();
+                lookingUp.current.sig = abort;
+                setCities(await fetchCities(newSearch, abort.signal));
+            }, 420);
         }
         else {
+            lookingUp.current.sig?.abort();
             setCities([]);
         }
     }
 
-    async function fetchCities(search) {
+    async function fetchCities(search, signal) {
         try {
-            let res = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(search)}&language=es`);
+            let res = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(search)}&language=es`, {signal});
             let newCities = await res.json();
+
+            lookingUp.current.sig = null;
 
             if (!res.ok) {
                 console.error("Error", newCities.reason);
@@ -68,6 +74,10 @@ function CitySearch(props) {
             return cities;
         }
         catch (err) {
+            if (err instanceof DOMException) {
+                return [];
+            }
+
             console.error(err);
             return [{
                 id: 0,
@@ -98,6 +108,7 @@ function CitySearch(props) {
                         id="input-city"
                         type="text"
                         placeholder="Busca tu ciudad..."
+                        autoComplete="off"
                         value={search}
                         onChange={handleChange}/>
                 </div>
