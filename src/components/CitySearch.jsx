@@ -7,6 +7,7 @@ function CitySearch(props) {
     const [search, setSearch] = useState("");
     const [cities, setCities] = useState([]);
     const [focus, setFocus] = useState(-1);
+    const [searched, setSearched] = useState(false);
     const allCities = useRef({});
     const lookingUp = useRef({id: 0, sig: null});
 
@@ -23,7 +24,12 @@ function CitySearch(props) {
         e.preventDefault();
 
         if (search != "") {
-            await goToCity(search);
+            if (focus > -1) {
+                await goToCity(cities[focus].cityName);
+            }
+            else {
+                await goToCity(search);
+            }
         }
     }
 
@@ -44,12 +50,14 @@ function CitySearch(props) {
                 let abort = new AbortController();
                 lookingUp.current.sig = abort;
                 setCities(await fetchCities(newSearch, abort.signal));
-                setFocus(() => Math.min(focus, cities.length - 1));
+                setFocus(-1);
+                setSearched(true);
             }, 420);
         }
         else {
             lookingUp.current.sig?.abort();
             setCities([]);
+            setSearched(false);
             setFocus(-1);
         }
     }
@@ -61,8 +69,13 @@ function CitySearch(props) {
         }
         if (e.key == "ArrowUp" || e.key == "Up") {
             e.preventDefault();
-            setFocus(Math.max(focus - 1, -1));
+            if (focus > -1)
+                setFocus(Math.max(focus - 1, 0));
         }
+    }
+
+    function handleBlur(e) {
+        setFocus(-1);
     }
 
     async function fetchCities(search, signal) {
@@ -103,7 +116,7 @@ function CitySearch(props) {
     }
 
     useEffect(() => {
-        if (focus >= 0) {
+        if (focus > -1) {
             let button = document.querySelector("#search-suggestions button.focused");
             let pos = button.getBoundingClientRect();
             if (pos.top < 0) {
@@ -115,7 +128,7 @@ function CitySearch(props) {
         }
     }, [focus]);
 
-    const cityList2 = cities.map((city, index) => (
+    let cityList2 = cities.map((city, index) => (
         <button 
             key={"city-" + city.id} 
             tabIndex="-1" 
@@ -125,6 +138,16 @@ function CitySearch(props) {
             <span>{city.cityName}</span>
         </button>
     ));
+
+    if (searched && cities.length == 0) {
+        cityList2 = (
+            <button disabled 
+                style={{
+                    textAlign: "center",
+                    margin: "8px auto 16px"
+                }}>No hay resultados para esta búsqueda.</button>
+        );
+    }
 
     return (
         <div id="div-city-search">
@@ -144,7 +167,8 @@ function CitySearch(props) {
                         autoComplete="off"
                         value={search}
                         onChange={handleChange}
-                        onKeyDown={handleKeyDown}/>
+                        onKeyDown={handleKeyDown}
+                        onBlur={handleBlur}/>
                 </div>
                 <div
                     id="search-suggestions"
