@@ -145,11 +145,11 @@ button:active > #search-icon  {
     outline: 2px solid #25F;
 }
 
-#search-suggestions button:hover {
+#search-suggestions button:hover:enabled {
     background-color: #FFF6;
 }
 
-#search-suggestions button:active {
+#search-suggestions button:active:enabled {
     background-color: #FFFD;
 }
 
