@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { deduplicateCityNames } from "../utils";
 import { searchIcon } from "../icons";
 import { CircleFlag } from "react-circle-flags";
@@ -6,6 +6,7 @@ import { CircleFlag } from "react-circle-flags";
 function CitySearch(props) {
     const [search, setSearch] = useState("");
     const [cities, setCities] = useState([]);
+    const [focus, setFocus] = useState(-1);
     const allCities = useRef({});
     const lookingUp = useRef({id: 0, sig: null});
 
@@ -29,6 +30,7 @@ function CitySearch(props) {
     async function handleChange(e) {
         let newSearch = e.target.value;
         setSearch(newSearch);
+        setFocus(-1);
         
         if (lookingUp.current.id != 0) {
             clearTimeout(lookingUp.current.id);
@@ -42,17 +44,31 @@ function CitySearch(props) {
                 let abort = new AbortController();
                 lookingUp.current.sig = abort;
                 setCities(await fetchCities(newSearch, abort.signal));
+                setFocus(() => Math.min(focus, cities.length - 1));
             }, 420);
         }
         else {
             lookingUp.current.sig?.abort();
             setCities([]);
+            setFocus(-1);
+        }
+    }
+
+    function handleKeyDown(e) {
+        if (e.key == "ArrowDown" || e.key == "Down") {
+            e.preventDefault();
+            setFocus(Math.min(focus + 1, cities.length - 1));
+        }
+        if (e.key == "ArrowUp" || e.key == "Up") {
+            e.preventDefault();
+            setFocus(Math.max(focus - 1, -1));
         }
     }
 
     async function fetchCities(search, signal) {
         try {
-            let res = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(search)}&language=es`, {signal});
+            let query = `name=${encodeURIComponent(search)}&language=es`;
+            let res = await fetch(`https://geocoding-api.open-meteo.com/v1/search?${query}`, {signal});
             let newCities = await res.json();
 
             lookingUp.current.sig = null;
@@ -85,9 +101,26 @@ function CitySearch(props) {
             }];
         }
     }
-   
-    const cityList2 = cities.map(city => (
-        <button key={"city-" + city.id} onClick={() => goToCity(city.cityName)}>
+
+    useEffect(() => {
+        if (focus >= 0) {
+            let button = document.querySelector("#search-suggestions button.focused");
+            let pos = button.getBoundingClientRect();
+            if (pos.top < 0) {
+                button.scrollIntoView(true);
+            }
+            else if (pos.bottom > innerHeight) {
+                button.scrollIntoView(false);
+            }
+        }
+    }, [focus]);
+
+    const cityList2 = cities.map((city, index) => (
+        <button 
+            key={"city-" + city.id} 
+            tabIndex="-1" 
+            className={index == focus ? "focused" : ""}
+            onClick={() => goToCity(city.cityName)}>
             <CircleFlag countryCode={city.country_code.toLowerCase()} height="24" width="24"/>
             <span>{city.cityName}</span>
         </button>
@@ -110,7 +143,8 @@ function CitySearch(props) {
                         placeholder="Busca tu ciudad..."
                         autoComplete="off"
                         value={search}
-                        onChange={handleChange}/>
+                        onChange={handleChange}
+                        onKeyDown={handleKeyDown}/>
                 </div>
                 <div
                     id="search-suggestions"
