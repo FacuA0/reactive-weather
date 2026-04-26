@@ -6,7 +6,7 @@ import { CircleFlag } from "react-circle-flags";
 function CitySearch(props) {
     const [search, setSearch] = useState("");
     const [cities, setCities] = useState([]);
-    const [focus, setFocus] = useState(-1);
+    const [focus, setFocus] = useState(-2);
     const [searched, setSearched] = useState(false);
     const allCities = useRef({});
     const lookingUp = useRef({id: 0, sig: null});
@@ -73,9 +73,13 @@ function CitySearch(props) {
                 setFocus(Math.max(focus - 1, 0));
         }
     }
+    
+    function handleFocus(e) {
+        setFocus(-1);
+    }
 
     function handleBlur(e) {
-        setFocus(-1);
+        setFocus(-2);
     }
 
     async function fetchCities(search, signal) {
@@ -141,17 +145,20 @@ function CitySearch(props) {
 
     if (searched && cities.length == 0) {
         cityList2 = (
-            <button disabled 
-                style={{
-                    textAlign: "center",
-                    margin: "8px auto 16px"
-                }}>No hay resultados para esta búsqueda.</button>
+            <button className="no-results" disabled>
+                No hay resultados para esta búsqueda.
+            </button>
         );
     }
+    
+    const listHidden = focus == -2 || cityList2.length == 0;
 
     return (
         <div id="div-city-search">
-            <form id="city-search" onSubmit={handleSubmit}>
+            <form id="city-search"
+                onSubmit={handleSubmit}
+                onFocus={handleFocus}
+                onBlur={handleBlur}>
                 <div id="search-bar">
                     <button type="submit">
                         <img 
@@ -167,12 +174,11 @@ function CitySearch(props) {
                         autoComplete="off"
                         value={search}
                         onChange={handleChange}
-                        onKeyDown={handleKeyDown}
-                        onBlur={handleBlur}/>
+                        onKeyDown={handleKeyDown}/>
                 </div>
                 <div
                     id="search-suggestions"
-                    className={cityList2.length == 0 ? "hidden" : ""}>
+                    className={listHidden ? "hidden" : ""}>
                     {cityList2}
                 </div>
             </form>
