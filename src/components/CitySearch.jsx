@@ -7,7 +7,7 @@ function CitySearch(props) {
     const [search, setSearch] = useState("");
     const [cities, setCities] = useState([]);
     const [focus, setFocus] = useState(-2);
-    const [searched, setSearched] = useState(false);
+    const [searchStep, setSearchStep] = useState(0);
     const allCities = useRef({});
     const lookingUp = useRef({id: 0, sig: null});
 
@@ -49,15 +49,16 @@ function CitySearch(props) {
 
                 let abort = new AbortController();
                 lookingUp.current.sig = abort;
+                setSearchStep(1);
                 setCities(await fetchCities(newSearch, abort.signal));
                 setFocus(-1);
-                setSearched(true);
+                setSearchStep(2);
             }, 420);
         }
         else {
             lookingUp.current.sig?.abort();
             setCities([]);
-            setSearched(false);
+            setSearchStep(0);
             setFocus(-1);
         }
     }
@@ -143,7 +144,7 @@ function CitySearch(props) {
         </button>
     ));
 
-    if (searched && cities.length == 0) {
+    if (searchStep == 2 && cities.length == 0) {
         cityList2 = (
             <button className="no-results" disabled>
                 No hay resultados para esta búsqueda.
@@ -151,11 +152,16 @@ function CitySearch(props) {
         );
     }
     
-    const listHidden = focus == -2 || cityList2.length == 0;
+    const formClasses = [];
+    if (focus == -2 || searchStep != 1)
+        formClasses.push("loading-hidden");
+    if (focus == -2 || cityList2.length == 0)
+        formClasses.push("list-hidden");
 
     return (
         <div id="div-city-search">
             <form id="city-search"
+                className={formClasses.join(" ")}
                 onSubmit={handleSubmit}
                 onFocus={handleFocus}
                 onBlur={handleBlur}>
@@ -176,9 +182,10 @@ function CitySearch(props) {
                         onChange={handleChange}
                         onKeyDown={handleKeyDown}/>
                 </div>
-                <div
-                    id="search-suggestions"
-                    className={listHidden ? "hidden" : ""}>
+                <div id="city-progress">
+                    <div id="city-progress-bar"></div>
+                </div>
+                <div id="search-suggestions">
                     {cityList2}
                 </div>
             </form>
