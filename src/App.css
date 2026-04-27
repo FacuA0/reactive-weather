@@ -264,6 +264,13 @@ button:active > #search-icon  {
     display: inline-block;
 }
 
+#weather-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 96px);
+}
+
 #btn-back {
     border: 0;
     padding: 12px;
@@ -390,6 +397,10 @@ h2 {
 
 .data-rain > img {
     margin-right: 4px;
+}
+
+main > p:last-child {
+    margin-bottom: 16px;
 }
 
 p {
