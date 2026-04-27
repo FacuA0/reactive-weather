@@ -27,6 +27,7 @@ function App() {
         }
 
         setCity(city);
+        setNow(null);
 
         const currentQuery = "current=temperature_2m,relative_humidity_2m,precipitation,rain,weather_code,apparent_temperature,is_day";
         const hourlyQuery = "hourly=temperature_2m,weather_code,precipitation_probability,is_day";
@@ -35,7 +36,7 @@ function App() {
         
         const res = await fetch(`https://api.open-meteo.com/v1/forecast?${locationQuery}&${dailyQuery}&${hourlyQuery}&${currentQuery}&timezone=auto`);
         let data = await res.json();
-
+        
         data.current.timezone = data.timezone_abbreviation;
         data.current.utcOffset = data.utc_offset_seconds;
 
@@ -126,31 +127,37 @@ function App() {
                 <City city={city} now={now}/>
             </header>
 
-            <div>
-                <img id="sky-icon" src={icon} width="180" alt={iconDesc} title={iconDesc}/>
-
-                <main>
-                    <div id="data-current">
-                        <Now now={now}/>
-                    </div>
-
-                    <div id="data-hours">
-                        <h2>Próximas 24 horas</h2>
-                        <div className="data-items" onScroll={listScrolled}>
-                            {hourList}
+            {now == null ? (
+                <div id="weather-loading">
+                    <p>Cargando datos...</p>
+                </div>
+            ) : (
+                <div>
+                    <img id="sky-icon" src={icon} width="180" alt={iconDesc} title={iconDesc}/>
+        
+                    <main>
+                        <div id="data-current">
+                            <Now now={now}/>
                         </div>
-                    </div>
-
-                    <div id="data-days">
-                        <h2>Próximos 7 días</h2>
-                        <div className="data-items" onScroll={listScrolled}>
-                            {dayList}
+        
+                        <div id="data-hours">
+                            <h2>Próximas 24 horas</h2>
+                            <div className="data-items" onScroll={listScrolled}>
+                                {hourList}
+                            </div>
                         </div>
-                    </div>
-
-                    <p>Datos del tiempo de <a href="https://open-meteo.com/">Open-Meteo.com</a></p>
-                </main>
-            </div>
+        
+                        <div id="data-days">
+                            <h2>Próximos 7 días</h2>
+                            <div className="data-items" onScroll={listScrolled}>
+                                {dayList}
+                            </div>
+                        </div>
+        
+                        <p>Datos del tiempo de <a href="https://open-meteo.com/">Open-Meteo.com</a></p>
+                    </main>
+                </div>
+            )}
         </div>
     );
 
