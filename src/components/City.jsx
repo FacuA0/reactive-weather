@@ -37,7 +37,7 @@ function City({ city, now }) {
 
     return (
         <>
-            <CircleFlag countryCode={countryCode} width="48" height="48"/>
+            <CircleFlag countryCode={countryCode} width="48" height="48" aria-hidden/>
             <div id="datos-ciudad">
                 <p><b>{city.cityName || "Desconocido"}</b></p>
                 <p>{hour || "Cargando..."}</p>

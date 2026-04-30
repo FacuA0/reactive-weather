@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { deduplicateCityNames } from "../utils";
-import { searchIcon } from "../icons";
+import { searchIcon, defaultIcon } from "../icons";
 import { CircleFlag } from "react-circle-flags";
 
 function CitySearch(props) {
@@ -15,6 +15,12 @@ function CitySearch(props) {
         let city = allCities.current[cityName];
         if (!city) {
             city = (await fetchCities(cityName))[0];
+        }
+        
+        let visited = JSON.parse(localStorage.getItem("visitedCities") ?? "[]");
+        if (!visited.includes(city)) {
+            visited.push(city);
+            localStorage.setItem("visited", JSON.stringify(visited));
         }
 
         props.setCity(city);
@@ -50,7 +56,9 @@ function CitySearch(props) {
                 let abort = new AbortController();
                 lookingUp.current.sig = abort;
                 setSearchStep(1);
+                
                 setCities(await fetchCities(newSearch, abort.signal));
+                
                 setFocus(-1);
                 setSearchStep(2);
             }, 420);
@@ -119,7 +127,71 @@ function CitySearch(props) {
             }];
         }
     }
+    
+    const visited = JSON.parse(localStorage.getItem("visitedCities") ?? "[]");
+    const visitedShow = visited.filter(c => cities.length == 0 || cities.includes(c));
+    visitedShow.length = Math.min(visitedShow.length, 5);
+    
+    let cityList = [];
+    cityList.push(...visitedShow.map((city, index) => (
+        <button 
+            key={"city-" + city.id}
+            tabIndex="-1"
+            className={index == focus ? "focused" : ""}
+            onClick={() => goToCity(city.cityName)}>
+            
+            <CircleFlag
+                countryCode={city.country_code.toLowerCase()}
+                height="24"
+                width="24"
+                aria-hidden/>
+            <span>{city.cityName}</span>
+            <img src={defaultIcon} height="24"/>
+        </button>
+    )));
+    
+    console.log(cityList);
+    
+    if (cityList.length > 0) {
+        cityList.push(<hr key="list-sep"/>);
+    }
 
+    console.log(cityList);
+    cityList.push(...cities
+        .filter(city => !visitedShow.includes(city))
+        .map((city, index) => (
+            <button 
+                key={"city-" + city.id} 
+                tabIndex="-1" 
+                className={index == focus ? "focused" : ""}
+                onClick={() => goToCity(city.cityName)}>
+                
+                <CircleFlag
+                    countryCode={city.country_code.toLowerCase()}
+                    height="24"
+                    width="24"
+                    aria-hidden/>
+                <span>{city.cityName}</span>
+            </button>
+        ))
+    );
+    
+    console.log(cityList);
+
+    if (searchStep == 2 && cities.length == 0) {
+        cityList = [(
+            <button className="no-results" disabled>
+                No hay resultados para esta búsqueda.
+            </button>
+        )];
+    }
+    
+    const formClasses = [];
+    if (focus == -2 || searchStep != 1)
+        formClasses.push("loading-hidden");
+    if (focus == -2 || cityList.length == 0)
+        formClasses.push("list-hidden");
+        
     useEffect(() => {
         if (focus > -1) {
             let button = document.querySelector("#search-suggestions button.focused");
@@ -132,32 +204,7 @@ function CitySearch(props) {
             }
         }
     }, [focus]);
-
-    let cityList2 = cities.map((city, index) => (
-        <button 
-            key={"city-" + city.id} 
-            tabIndex="-1" 
-            className={index == focus ? "focused" : ""}
-            onClick={() => goToCity(city.cityName)}>
-            <CircleFlag countryCode={city.country_code.toLowerCase()} height="24" width="24"/>
-            <span>{city.cityName}</span>
-        </button>
-    ));
-
-    if (searchStep == 2 && cities.length == 0) {
-        cityList2 = (
-            <button className="no-results" disabled>
-                No hay resultados para esta búsqueda.
-            </button>
-        );
-    }
     
-    const formClasses = [];
-    if (focus == -2 || searchStep != 1)
-        formClasses.push("loading-hidden");
-    if (focus == -2 || cityList2.length == 0)
-        formClasses.push("list-hidden");
-
     return (
         <div id="div-city-search">
             <form id="city-search"
@@ -186,7 +233,7 @@ function CitySearch(props) {
                     <div id="city-progress-bar"></div>
                 </div>
                 <div id="search-suggestions">
-                    {cityList2}
+                    {cityList}
                 </div>
             </form>
         </div>
