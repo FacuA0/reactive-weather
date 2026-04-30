@@ -85,7 +85,7 @@ function App() {
     function listScrolled(evt) {
         let elem = evt.target;
         elem.classList.toggle("scroll-s", elem.scrollLeft > 0);
-        elem.classList.toggle("scroll-e", elem.scrollLeft < Math.floor(elem.scrollWidth - elem.clientWidth));
+        elem.classList.toggle("scroll-e", elem.scrollLeft < elem.scrollWidth - elem.clientWidth - 1);
     }
 
     let icon = wClearDayIcon, iconDesc = "Esperando...";
@@ -133,7 +133,7 @@ function App() {
                 </div>
             ) : (
                 <div>
-                    <img id="sky-icon" src={icon} width="180" alt={iconDesc} title={iconDesc}/>
+                    <img id="sky-icon" src={icon} width="180" alt={iconDesc} title={iconDesc} aria-hidden/>
         
                     <main>
                         <div id="data-current">
@@ -142,14 +142,14 @@ function App() {
         
                         <div id="data-hours">
                             <h2>Próximas 24 horas</h2>
-                            <div className="data-items" onScroll={listScrolled}>
+                            <div className="data-items scroll-e" onScroll={listScrolled}>
                                 {hourList}
                             </div>
                         </div>
         
                         <div id="data-days">
                             <h2>Próximos 7 días</h2>
-                            <div className="data-items" onScroll={listScrolled}>
+                            <div className="data-items scroll-e" onScroll={listScrolled}>
                                 {dayList}
                             </div>
                         </div>

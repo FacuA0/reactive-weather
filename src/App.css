@@ -327,7 +327,7 @@ body.night .weather > header {
 }
 
 #data-current, #data-hours, #data-days {
-    background-color: #FFF2;
+    background-color: #FFF1;
     margin: 24px 0;
     padding: 20px;
     border-radius: 24px;
@@ -364,7 +364,7 @@ h2 {
 }
 
 .data-item {
-    background-color: #FFF2;
+    background-color: #FFF1;
     padding: 12px 8px;
     border-radius: 12px;
     display: flex;
