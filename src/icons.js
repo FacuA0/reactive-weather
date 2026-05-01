@@ -3,6 +3,7 @@ import backIcon from "./assets/icons/back.svg";
 import defaultIcon from "./assets/icons/default.svg";
 import locationIcon from "./assets/icons/location.svg";
 import searchIcon from "./assets/icons/search.svg";
+import removeRecentsIcon from "./assets/icons/remove-recents.svg";
 
 // Weather day icons
 import wClearDayIcon from "./assets/icons/w-clear-day.svg";
@@ -69,6 +70,7 @@ export {
     mainLogo,
     searchIcon,
     locationIcon,
+    removeRecentsIcon,
     backIcon,
 
     // Weather day

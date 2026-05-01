@@ -158,6 +158,12 @@ button:active > #search-icon  {
     margin-top: 8px;
 }
 
+#search-suggestions hr {
+    margin: 4px 8px;
+    border: 0;
+    border-top: 1px solid #AAA;
+}
+
 #search-suggestions button {
     background-color: #FFF0;
     border: 0;
@@ -186,6 +192,13 @@ button:active > #search-icon  {
 
 #search-suggestions span {
     text-align: start;
+    flex-grow: 1;
+}
+
+
+
+#search-suggestions img.remove {
+    
 }
 
 #search-suggestions button.no-results {
