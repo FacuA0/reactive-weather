@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { deduplicateCityNames } from "../utils";
-import { searchIcon, defaultIcon } from "../icons";
+import { searchIcon, removeRecentsIcon } from "../icons";
 import { CircleFlag } from "react-circle-flags";
 
 function CitySearch(props) {
     const [search, setSearch] = useState("");
     const [cities, setCities] = useState([]);
+    const [recents, setRecents] = useState(getSavedRecents);
     const [focus, setFocus] = useState(-2);
     const [searchStep, setSearchStep] = useState(0);
     const allCities = useRef({});
@@ -17,13 +18,22 @@ function CitySearch(props) {
             city = (await fetchCities(cityName))[0];
         }
         
-        let visited = JSON.parse(localStorage.getItem("visitedCities") ?? "[]");
-        if (!visited.includes(city)) {
-            visited.push(city);
-            localStorage.setItem("visited", JSON.stringify(visited));
+        // If the city we're going to is not in recents, add it.
+        if (!recents.find(r => r.cityName == city.cityName)) {
+            let newRecents = [city, ...recents];
+            saveRecents(newRecents);
         }
 
         props.setCity(city);
+    }
+
+    function getSavedRecents() {
+        let text = localStorage.getItem("visitedCities") ?? "[]";
+        return JSON.parse(text);
+    }
+    
+    function saveRecents(recents) {
+        localStorage.setItem("visitedCities", JSON.stringify(recents));
     }
 
     async function handleSubmit(e) {
@@ -128,12 +138,10 @@ function CitySearch(props) {
         }
     }
     
-    const visited = JSON.parse(localStorage.getItem("visitedCities") ?? "[]");
-    const visitedShow = visited.filter(c => cities.length == 0 || cities.includes(c));
+    const visitedShow = recents.filter(v => cities.length == 0 || cities.find(city => city.cityName == v.cityName));
     visitedShow.length = Math.min(visitedShow.length, 5);
     
-    let cityList = [];
-    cityList.push(...visitedShow.map((city, index) => (
+    let cityList = visitedShow.map((city, index) => (
         <button 
             key={"city-" + city.id}
             tabIndex="-1"
@@ -146,24 +154,17 @@ function CitySearch(props) {
                 width="24"
                 aria-hidden/>
             <span>{city.cityName}</span>
-            <img src={defaultIcon} height="24"/>
+            <img src={removeRecentsIcon} className="remove" height="16"/>
         </button>
-    )));
-    
-    console.log(cityList);
-    
-    if (cityList.length > 0) {
-        cityList.push(<hr key="list-sep"/>);
-    }
+    ));
 
-    console.log(cityList);
-    cityList.push(...cities
-        .filter(city => !visitedShow.includes(city))
+    let cityList2 = cities
+        .filter(city => !visitedShow.find(v => city.cityName == v.cityName))
         .map((city, index) => (
             <button 
                 key={"city-" + city.id} 
                 tabIndex="-1" 
-                className={index == focus ? "focused" : ""}
+                className={index == focus - visitedShow.length ? "focused" : ""}
                 onClick={() => goToCity(city.cityName)}>
                 
                 <CircleFlag
@@ -173,11 +174,15 @@ function CitySearch(props) {
                     aria-hidden/>
                 <span>{city.cityName}</span>
             </button>
-        ))
+        )
     );
     
-    console.log(cityList);
+    if (cityList.length > 0 && cityList2.length > 0) {
+        cityList.push(<hr key="list-sep"/>);
+    }
 
+    cityList.push(...cityList2);
+    
     if (searchStep == 2 && cities.length == 0) {
         cityList = [(
             <button className="no-results" disabled>
