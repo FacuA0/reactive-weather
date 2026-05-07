@@ -3,7 +3,9 @@ body {
     min-height: 100vh;
     box-sizing: border-box;
     background-color: #5AF;
-    background-image: linear-gradient(180deg, #25F, #39F);
+    --bg-color1: #25F;
+    --bg-color2: #39F;
+    background-image: linear-gradient(180deg, var(--bg-color1), var(--bg-color2));
     background-attachment: fixed;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #FFF;
@@ -11,7 +13,7 @@ body {
     display: flex;
     justify-content: center;
     
-    transition: background-image 1s ease;
+    transition: --bg-color1 1s ease, --bg-color2 1s ease;
 }
 
 a {
@@ -25,7 +27,8 @@ a:active {
 
 body.night {
     background-color: #136;
-    background-image: linear-gradient(-45deg, #025, #248);
+    --bg-color1: #025;
+    --bg-color2: #248;
 }
 
 #root {
@@ -250,7 +253,7 @@ button:active > #search-icon  {
 }
 
 .weather > header {
-    background-color: #FFF3;
+    background-color: #FFF2;
     backdrop-filter: blur(8px);
     display: flex;
     align-items: center;
@@ -327,7 +330,7 @@ body.night .weather > header {
 }
 
 #data-current, #data-hours, #data-days {
-    background-color: #FFF1;
+    background-color: #0000001A;
     margin: 24px 0;
     padding: 20px;
     border-radius: 24px;
@@ -364,7 +367,7 @@ h2 {
 }
 
 .data-item {
-    background-color: #FFF1;
+    background-color: #FFFFFF1A;
     padding: 12px 8px;
     border-radius: 12px;
     display: flex;
