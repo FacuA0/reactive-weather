@@ -16,6 +16,7 @@ import { mainLogo, backIcon, wClearDayIcon } from './icons';
 function App() {
     const [city, setCity] = useState(null); // If null -> search page, otherwise weather page
     const [now, setNow] = useState(null);
+    const [error, setError] = useState(null);
     const [hourly, setHourly] = useState([]);
     const [daily, setDaily] = useState([]);
     const body = useRef(document.querySelector("body"));
@@ -34,8 +35,15 @@ function App() {
         const dailyQuery = "daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_mean";
         const locationQuery = `latitude=${city.latitude}&longitude=${city.longitude}`;
         
-        const res = await fetch(`https://api.open-meteo.com/v1/forecast?${locationQuery}&${dailyQuery}&${hourlyQuery}&${currentQuery}&timezone=auto`);
-        let data = await res.json();
+        let res, data;
+        try {
+            res = await fetch(`https://api.open-meteo.com/v1/forecast?${locationQuery}&${dailyQuery}&${hourlyQuery}&${currentQuery}&timezone=auto`);
+            data = await res.json();
+        }
+        catch (err) {
+            setError(err);
+            return;
+        }
         
         data.current.timezone = data.timezone_abbreviation;
         data.current.utcOffset = data.utc_offset_seconds;
@@ -118,7 +126,7 @@ function App() {
     const weatherPage = (
         <div className="weather">
             <header>
-                <button id="btn-back" onClick={() => setCity(null)} title="Ir atrás">
+                <button id="btn-back" onClick={() => setCity(null) && setError(null)} title="Ir atrás">
                     <img src={backIcon} height="28"/>
                 </button>
                 <img id="logo" src={mainLogo} alt="Logo Reactive Weather" height="96"/>
@@ -127,9 +135,14 @@ function App() {
                 <City city={city} now={now}/>
             </header>
 
-            {now == null ? (
+            {now == null && error == null ? (
                 <div id="weather-loading">
                     <p>Cargando datos...</p>
+                </div>
+            ) : error != null ? (
+                <div id="weather-loading">
+                    <p>Hubo un error al cargar los datos</p>
+                    <p>error.message</p>
                 </div>
             ) : (
                 <div>
