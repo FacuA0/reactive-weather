@@ -8,6 +8,7 @@ function CitySearch(props) {
     const [cities, setCities] = useState([]);
     const [recents, setRecents] = useState(getSavedRecents);
     const [focus, setFocus] = useState(-2);
+    const [focusRemove, setFocusRemove] = useState(false);
     const [searchStep, setSearchStep] = useState(0);
     const allCities = useRef({});
     const lookingUp = useRef({id: 0, sig: null});
@@ -39,7 +40,15 @@ function CitySearch(props) {
     async function handleSubmit(e) {
         e.preventDefault();
 
-        if (search != "") {
+        if (focusRemove) {
+            let deleted = visitedShow.find((c, i) => i == focus);
+            let newRecents = recents.filter(c => c != deleted);
+            saveRecents(newRecents);
+            setRecents(newRecents);
+            setFocus(-1);
+            setFocusRemove(false);
+        }
+        else if (search != "") {
             if (focus > -1) {
                 await goToCity(cities[focus].cityName);
             }
@@ -53,6 +62,7 @@ function CitySearch(props) {
         let newSearch = e.target.value;
         setSearch(newSearch);
         setFocus(-1);
+        setFocusRemove(false);
         
         if (lookingUp.current.id != 0) {
             clearTimeout(lookingUp.current.id);
@@ -70,6 +80,7 @@ function CitySearch(props) {
                 setCities(await fetchCities(newSearch, abort.signal));
                 
                 setFocus(-1);
+                setFocusRemove(false);
                 setSearchStep(2);
             }, 420);
         }
@@ -78,6 +89,7 @@ function CitySearch(props) {
             setCities([]);
             setSearchStep(0);
             setFocus(-1);
+            setFocusRemove(false);
         }
     }
 
@@ -85,20 +97,50 @@ function CitySearch(props) {
         if (e.key == "ArrowDown" || e.key == "Down") {
             e.preventDefault();
             setFocus(Math.min(focus + 1, cities.length - 1));
+            setFocusRemove(false);
         }
         if (e.key == "ArrowUp" || e.key == "Up") {
             e.preventDefault();
-            if (focus > -1)
+            if (focus > -1) {
                 setFocus(Math.max(focus - 1, 0));
+                setFocusRemove(false);
+            }
+        }
+        if (e.key == "ArrowLeft" || e.key == "Left") {
+            console.log(focus, visitedShow);
+            if (focus > -1 && focus < visitedShow.length) {
+                e.preventDefault();
+                setFocusRemove(false);
+            }
+        }
+        if (e.key == "ArrowRight" || e.key == "Right") {
+            console.log(focus, visitedShow);
+            if (focus > -1 && focus < visitedShow.length) {
+                e.preventDefault();
+                setFocusRemove(true);
+            }
         }
     }
     
     function handleFocus(e) {
         setFocus(-1);
+        setFocusRemove(false);
     }
 
     function handleBlur(e) {
         setFocus(-2);
+        setFocusRemove(false);
+    }
+
+    function handleRemoveClick(e, deletedCity) {
+        console.log("Remove click", e);
+        e.preventDefault();
+        
+        let newRecents = recents.filter(c => c != deletedCity);
+        saveRecents(newRecents);
+        setRecents(newRecents);
+        setFocus(-1);
+        setFocusRemove(false);
     }
 
     async function fetchCities(search, signal) {
@@ -145,7 +187,7 @@ function CitySearch(props) {
         <button 
             key={"city-" + city.id}
             tabIndex="-1"
-            className={index == focus ? "focused" : ""}
+            className={index == focus && !focusRemove ? "focused" : ""}
             onClick={() => goToCity(city.cityName)}>
             
             <CircleFlag
@@ -154,7 +196,11 @@ function CitySearch(props) {
                 width="24"
                 aria-hidden/>
             <span>{city.cityName}</span>
-            <img src={removeRecentsIcon} className="remove" height="16"/>
+            <button
+                className={"remove" + (index == focus && focusRemove ? " focused" : "")}
+                onClick={e => handleRemoveClick(e, city)}>
+                <img src={removeRecentsIcon} height="16"/>
+            </button>
         </button>
     ));
 
