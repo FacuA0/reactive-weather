@@ -145,7 +145,6 @@ button:active > #search-icon  {
     border-radius: 18px;
     width: 100%;
     margin-top: 4px;
-    overflow-y: scroll;
     display: flex;
     flex-direction: column;
 }
@@ -186,19 +185,23 @@ button:active > #search-icon  {
     background-color: #FFFD;
 }
 
-#search-suggestions img {
+#search-suggestions > button > img {
     margin: 6px 12px 6px 8px;
 }
 
-#search-suggestions span {
+#search-suggestions > button > span {
     text-align: start;
     flex-grow: 1;
 }
 
+#search-suggestions > button .remove {
+    position: relative;
+    padding: 4px;
+}
 
-
-#search-suggestions img.remove {
-    
+#search-suggestions > button .remove.focused {
+    outline: 2px solid #25F;
+    outline-offset: 1px;
 }
 
 #search-suggestions button.no-results {
@@ -367,13 +370,16 @@ h2 {
 }
 
 .data-items.scroll-s {
-    mask: linear-gradient(90deg, #FFF0, #FFFF 8px);
+    -webkit-mask: linear-gradient(90deg, #FFF0, #FFFF 8px) no-clip;
+    mask: linear-gradient(90deg, #FFF0, #FFFF 8px) no-clip;
 }
 .data-items.scroll-e {
-    mask: linear-gradient(270deg, #FFF0, #FFFF 8px);
+    -webkit-mask: linear-gradient(270deg, #FFF0, #FFFF 8px) no-clip;
+    mask: linear-gradient(270deg, #FFF0, #FFFF 8px) no-clip;
 }
 .data-items.scroll-s.scroll-e {
-    mask: linear-gradient(90deg, #FFF0, #FFFF 8px, #FFFF calc(100% - 8px), #FFF0);
+    -webkit-mask: linear-gradient(90deg, #FFF0, #FFFF 8px, #FFFF calc(100% - 8px), #FFF0) no-clip;
+    mask: linear-gradient(90deg, #FFF0, #FFFF 8px, #FFFF calc(100% - 8px), #FFF0) no-clip;
 }
 
 .data-item {
