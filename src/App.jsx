@@ -95,6 +95,14 @@ function App() {
         elem.classList.toggle("scroll-s", elem.scrollLeft > 0);
         elem.classList.toggle("scroll-e", elem.scrollLeft < elem.scrollWidth - elem.clientWidth - 1);
     }
+    
+    let errorMsg = error?.message;
+    if (error) {
+        if (error instanceof TypeError && (
+            errorMsg.includes("NetworkError") || errorMsg == "Failed to fetch")) {
+            errorMsg = "No se pudo conectar a Internet.";
+        }
+    }
 
     let icon = wClearDayIcon, iconDesc = "Esperando...";
     let bodyClass = "";
@@ -132,7 +140,7 @@ function App() {
                 <img id="logo" src={mainLogo} alt="Logo Reactive Weather" height="96"/>
                 <div className="filler"></div>
 
-                <City city={city} now={now}/>
+                <City city={city} now={now} error={error}/>
             </header>
 
             {now == null && error == null ? (
@@ -140,9 +148,9 @@ function App() {
                     <p>Cargando datos...</p>
                 </div>
             ) : error != null ? (
-                <div id="weather-loading">
-                    <p>Hubo un error al cargar los datos</p>
-                    <p>error.message</p>
+                <div id="weather-error">
+                    <p>Hubo un error al cargar los datos:</p>
+                    <p>{errorMsg}</p>
                 </div>
             ) : (
                 <div>
