@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { CircleFlag } from "react-circle-flags";
 
-function City({ city, now }) {
+function City({ city, now, error }) {
     city = city || {};
     const [hour, setHour] = useState(null);
     const timeId = useRef(0);
@@ -40,7 +40,7 @@ function City({ city, now }) {
             <CircleFlag countryCode={countryCode} width="48" height="48" aria-hidden/>
             <div id="datos-ciudad">
                 <p><b>{city.cityName || "Desconocido"}</b></p>
-                <p>{hour || "Cargando..."}</p>
+                <p>{hour || (error ? "Sin hora" : "Cargando...")}</p>
             </div>
         </>
     );
