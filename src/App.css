@@ -280,11 +280,15 @@ button:active > #search-icon  {
     display: inline-block;
 }
 
-#weather-loading {
+#weather-loading, #weather-error {
     display: flex;
     justify-content: center;
     align-items: center;
     height: calc(100vh - 96px);
+}
+
+#weather-error > p {
+    color: #FCC;
 }
 
 #btn-back {
