@@ -176,6 +176,7 @@ function App() {
                         </div>
         
                         <p>Datos del tiempo de <a href="https://open-meteo.com/">Open-Meteo.com</a></p>
+                        <p>Banderas circulares de <a href="https://github.com/HatScripts/circle-flags">circle-flags</a> (por medio de <a href="https://www.npmjs.com/package/react-circle-flags">react-circle-flags</a>)</p>
                     </main>
                 </div>
             )}
